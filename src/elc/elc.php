@@ -54,7 +54,7 @@ class elc
      *
      * @return string
      */
-    public function getLog()
+    public function getLog(): string
     {
         return $this->log;
     }
@@ -64,9 +64,26 @@ class elc
      *
      * @param string $log
      */
-    public function setLog($log)
+    protected function setLog($log): void
     {
         $this->log = $log;
+    }
+
+    /**
+     * Analyze the log and return a score
+     *
+     * @return int
+     */
+    protected function scoreLog(): int
+    {
+        /* Set the initial score to 100 */
+        $score = 100;
+
+        /* TODO: log score deductions */
+
+        /* Finally, return the score */
+
+        return $score;
     }
 
     /**
@@ -78,6 +95,7 @@ class elc
     public function __construct(string $log)
     {
         $this->setLog($log);
+        $this->scoreLog();
     }
 
     /**
