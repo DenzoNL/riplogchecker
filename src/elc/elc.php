@@ -64,7 +64,7 @@ class elc
      *
      * @param string $log
      */
-    protected function setLog($log): void
+    protected function setLog($log)
     {
         $this->log = $log;
     }
@@ -95,7 +95,7 @@ class elc
     public function __construct(string $log)
     {
         $this->setLog($log);
-        $this->scoreLog();
+        $this->score = $this->scoreLog();
     }
 
     /**
