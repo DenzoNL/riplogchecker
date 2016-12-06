@@ -5,13 +5,6 @@ namespace elc;
 class elc
 {
     /**
-     * The full text of the log file
-     *
-     * @var string
-     */
-    protected $log;
-
-    /**
      * The point deduction constants
      */
     const DEFEAT_AUDIO_CACHE_DISABLED = -5;
@@ -42,4 +35,58 @@ class elc
         self::CRC_MISMATCH => 'CRC mismatch (-30 points)',
     );
 
+    /**
+     * The full text of the log file
+     *
+     * @var string
+     */
+    protected $log;
+
+    /**
+     * The log score
+     *
+     * @var int
+     */
+    protected $score;
+
+    /**
+     * Gets log file
+     *
+     * @return string
+     */
+    public function getLog()
+    {
+        return $this->log;
+    }
+
+    /**
+     * Sets the log file
+     *
+     * @param string $log
+     */
+    public function setLog($log)
+    {
+        $this->log = $log;
+    }
+
+    /**
+     * Creates a new elc object based on the log file
+     *
+     * elc constructor.
+     * @param string $log
+     */
+    public function __construct(string $log)
+    {
+        $this->setLog($log);
+    }
+
+    /**
+     * Get the log score
+     *
+     * @return int
+     */
+    public function getScore(): int
+    {
+        return $this->score;
+    }
 }

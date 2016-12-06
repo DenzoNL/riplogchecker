@@ -1,0 +1,235 @@
+Exact Audio Copy V1.0 beta 3 from 29. August 2011
+
+EAC extraction logfile from 27. July 2014, 12:00
+
+Beastie Boys / The Mix-Up
+
+Used drive  : TSSTcorpDVD+-RW TS-U633F   Adapter: 1  ID: 0
+
+Read mode               : Secure
+Utilize accurate stream : Yes
+Defeat audio cache      : Yes
+Make use of C2 pointers : No
+
+Read offset correction                      : 6
+Overread into Lead-In and Lead-Out          : No
+Fill up missing offset samples with silence : Yes
+Delete leading and trailing silent blocks   : No
+Null samples used in CRC calculations       : Yes
+Used interface                              : Installed external ASPI interface
+Gap handling                                : Appended to previous track
+
+Used output format              : User Defined Encoder
+Selected bitrate                : 1024 kBit/s
+Quality                         : High
+Add ID3 tag                     : No
+Command line compressor         : C:\Program Files\Exact Audio Copy\Flac\flac.exe
+Additional command line options : -8 -V -T "ARTIST=%artist%" -T "TITLE=%title%" -T "ALBUM=%albumtitle%" -T "DATE=%year%" -T "TRACKNUMBER=%tracknr%" -T "GENRE=%genre%" -T "PERFORMER=%albuminterpret%" -T "COMPOSER=%composer%" %haslyrics%--tag-from-file=LYRICS="%lyricsfile%"%haslyrics% -T "ALBUMARTIST=%albumartist%" -T "DISCNUMBER=%cdnumber%" -T "TOTALDISCS=%totalcds%" -T "TOTALTRACKS=%numtracks%" -T "COMMENT=%comment%" %source% -o %dest%
+
+
+TOC of the extracted CD
+
+     Track |   Start  |  Length  | Start sector | End sector
+    ---------------------------------------------------------
+        1  |  0:00.00 |  3:32.04 |         0    |    15903
+        2  |  3:32.04 |  3:34.03 |     15904    |    31956
+        3  |  7:06.07 |  3:17.46 |     31957    |    46777
+        4  | 10:23.53 |  3:47.52 |     46778    |    63854
+        5  | 14:11.30 |  3:15.63 |     63855    |    78542
+        6  | 17:27.18 |  3:06.05 |     78543    |    92497
+        7  | 20:33.23 |  4:36.19 |     92498    |   113216
+        8  | 25:09.42 |  3:37.20 |    113217    |   129511
+        9  | 28:46.62 |  3:10.37 |    129512    |   143798
+       10  | 31:57.24 |  3:57.38 |    143799    |   161611
+       11  | 35:54.62 |  3:06.26 |    161612    |   175587
+       12  | 39:01.13 |  3:31.03 |    175588    |   191415
+       13  | 42:32.16 |  3:37.29 |    191416    |   207719
+       14  | 46:09.45 |  3:13.24 |    207720    |   222218
+
+
+Track  1
+
+     Filename H:\flac\The Mix Up\01 - B For My Name.wav
+
+     Pre-gap length  0:00:02.00
+
+     Peak level 98.2 %
+     Extraction speed 2.6 X
+     Track quality 100.0 %
+     Test CRC C7452E96
+     Copy CRC C7452E96
+     Accurately ripped (confidence 3)  [8DBF2865]  (AR v1)
+     Copy OK
+
+Track  2
+
+     Filename H:\flac\The Mix Up\02 - 14th St. Break.wav
+
+     Peak level 94.1 %
+     Extraction speed 2.8 X
+     Track quality 100.0 %
+     Test CRC 1B70C0D5
+     Copy CRC 1B70C0D5
+     Accurately ripped (confidence 3)  [87DDF8BD]  (AR v1)
+     Copy OK
+
+Track  3
+
+     Filename H:\flac\The Mix Up\03 - Suco De Tangerina.wav
+
+     Peak level 99.8 %
+     Extraction speed 3.0 X
+     Track quality 100.0 %
+     Test CRC DAC61F41
+     Copy CRC DAC61F41
+     Accurately ripped (confidence 3)  [66A8D924]  (AR v1)
+     Copy OK
+
+Track  4
+
+     Filename H:\flac\The Mix Up\04 - The Gala Event.wav
+
+     Peak level 99.0 %
+     Extraction speed 3.3 X
+     Track quality 100.0 %
+     Test CRC 7F60A48A
+     Copy CRC 7F60A48A
+     Accurately ripped (confidence 3)  [0AB8C5D4]  (AR v1)
+     Copy OK
+
+Track  5
+
+     Filename H:\flac\The Mix Up\05 - Electric Worm.wav
+
+     Pre-gap length  0:00:10.64
+
+     Peak level 99.8 %
+     Extraction speed 2.7 X
+     Track quality 99.9 %
+     Test CRC 38D5483E
+     Copy CRC 38D5483E
+     Accurately ripped (confidence 3)  [66C8D5B1]  (AR v1)
+     Copy OK
+
+Track  6
+
+     Filename H:\flac\The Mix Up\06 - Freaky Hijiki.wav
+
+     Peak level 97.8 %
+     Extraction speed 3.5 X
+     Track quality 100.0 %
+     Test CRC 82B1E49E
+     Copy CRC 82B1E49E
+     Accurately ripped (confidence 3)  [AED87943]  (AR v1)
+     Copy OK
+
+Track  7
+
+     Filename H:\flac\The Mix Up\07 - Off The Grid.wav
+
+     Pre-gap length  0:00:08.97
+
+     Peak level 99.8 %
+     Extraction speed 3.8 X
+     Track quality 100.0 %
+     Test CRC A3D113FE
+     Copy CRC A3D113FE
+     Accurately ripped (confidence 3)  [79AA9BCA]  (AR v1)
+     Copy OK
+
+Track  8
+
+     Filename H:\flac\The Mix Up\08 - The Rat Cage.wav
+
+     Peak level 99.5 %
+     Extraction speed 3.9 X
+     Track quality 100.0 %
+     Test CRC 2854C0ED
+     Copy CRC 2854C0ED
+     Accurately ripped (confidence 3)  [B06D89DC]  (AR v1)
+     Copy OK
+
+Track  9
+
+     Filename H:\flac\The Mix Up\09 - The Melee.wav
+
+     Peak level 98.1 %
+     Extraction speed 3.9 X
+     Track quality 100.0 %
+     Test CRC 89DCC4CD
+     Copy CRC 89DCC4CD
+     Accurately ripped (confidence 3)  [55608098]  (AR v1)
+     Copy OK
+
+Track 10
+
+     Filename H:\flac\The Mix Up\10 - Dramastically Different.wav
+
+     Peak level 98.1 %
+     Extraction speed 4.3 X
+     Track quality 100.0 %
+     Test CRC 673EE937
+     Copy CRC 673EE937
+     Accurately ripped (confidence 3)  [E37BAE74]  (AR v1)
+     Copy OK
+
+Track 11
+
+     Filename H:\flac\The Mix Up\11 - The Cousin of Death.wav
+
+     Peak level 98.3 %
+     Extraction speed 4.1 X
+     Track quality 100.0 %
+     Test CRC 8F2095C2
+     Copy CRC 8F2095C2
+     Accurately ripped (confidence 3)  [648ECC98]  (AR v1)
+     Copy OK
+
+Track 12
+
+     Filename H:\flac\The Mix Up\12 - The Kangaroo Rat.wav
+
+     Peak level 98.3 %
+     Extraction speed 4.2 X
+     Track quality 100.0 %
+     Test CRC DB2A0D80
+     Copy CRC DB2A0D80
+     Accurately ripped (confidence 3)  [A765893E]  (AR v1)
+     Copy OK
+
+Track 13
+
+     Filename H:\flac\The Mix Up\13 - The Mix Up.wav
+
+     Pre-gap length  0:00:02.54
+
+     Peak level 99.8 %
+     Extraction speed 4.2 X
+     Track quality 100.0 %
+     Test CRC 80CD0885
+     Copy CRC 80CD0885
+     Accurately ripped (confidence 3)  [BEB66A15]  (AR v1)
+     Copy OK
+
+Track 14
+
+     Filename H:\flac\The Mix Up\14 - Fibonacci Sequence.wav
+
+     Pre-gap length  0:00:04.21
+
+     Peak level 99.8 %
+     Extraction speed 4.0 X
+     Track quality 100.0 %
+     Test CRC A751161B
+     Copy CRC A751161B
+     Accurately ripped (confidence 3)  [98C899C2]  (AR v1)
+     Copy OK
+
+
+All tracks accurately ripped
+
+No errors occurred
+
+End of status report
+
+==== Log checksum 063F494868CFFFAF6D2A4A93E0E326D904B44F0C307320DD75209A4D53960D20 ====
