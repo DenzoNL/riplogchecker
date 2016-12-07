@@ -2,7 +2,7 @@
 
 namespace RipLogChecker\Parsers;
 
-class BaseParser
+abstract class BaseParser
 {
     /**
      * The point deduction constants
@@ -49,37 +49,11 @@ class BaseParser
     protected $log;
 
     /**
-     * Creates a new Parser object based on the log file, and parses it
+     * Parses the log file the log file
      *
-     * RipLogChecker constructor.
-     * @param string $log
-     */
-    public function __construct(string $log)
-    {
-        $this->log = $log;
-        $this->parse();
-    }
-
-    /**
      *
      */
-    public function parse(): bool
-    {
-        /* If the log is empty, return false */
-        if(!$this->log)
-        {
-            return false;
-        }
-
-        /* Parse $this->log */
-        /* TODO: log score deductions */
-
-        /* Set deducted points */
-        $deductedPoints = 0;
-        $this->setDeductedPoints($deductedPoints);
-
-        return true;
-    }
+    abstract public function parse(): bool;
 
     /**
      * @return int
@@ -96,5 +70,4 @@ class BaseParser
     {
         $this->deductedPoints = $deductedPoints;
     }
-
 }
