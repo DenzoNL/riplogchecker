@@ -1,8 +1,10 @@
 <?php
 
-namespace elc;
+namespace RipLogChecker;
 
-class elc
+use RipLogChecker\Parsers\EacParser;
+
+class RipLogChecker
 {
     /**
      * The full text of the log file
@@ -45,8 +47,8 @@ class elc
      */
     protected function scoreLog(): int
     {
-        /* Create parser object and pass the log */
-        $parser = new parser($this->log);
+        /* Create Parser object and pass the log */
+        $parser = new EacParser($this->log);
 
         /* Generate the final score */
         $score = 100 - $parser->getDeductedPoints();
@@ -56,9 +58,9 @@ class elc
     }
 
     /**
-     * Creates a new elc object based on the log file, and scores it
+     * Creates a new RipLogChecker object based on the log file, and scores it
      *
-     * elc constructor.
+     * RipLogChecker constructor.
      * @param string $log
      */
     public function __construct(string $log)

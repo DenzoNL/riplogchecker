@@ -12,12 +12,12 @@
 
     <filter>
         <whitelist>
-            <directory>src/elc</directory>
+            <directory>src/RipLogChecker</directory>
         </whitelist>
     </filter>
 
     <testsuites>
-        <testsuite name="elc Test Suite">
+        <testsuite name="RipLogChecker Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

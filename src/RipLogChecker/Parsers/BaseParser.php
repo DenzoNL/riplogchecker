@@ -1,9 +1,8 @@
 <?php
 
-namespace elc;
+namespace RipLogChecker\Parsers;
 
-
-class parser
+class BaseParser
 {
     /**
      * The point deduction constants
@@ -50,9 +49,9 @@ class parser
     protected $log;
 
     /**
-     * Creates a new parser object based on the log file, and parses it
+     * Creates a new Parser object based on the log file, and parses it
      *
-     * elc constructor.
+     * RipLogChecker constructor.
      * @param string $log
      */
     public function __construct(string $log)
@@ -85,7 +84,7 @@ class parser
     /**
      * @return int
      */
-    public function getDeductedPoints()
+    public function getDeductedPoints(): int
     {
         return $this->deductedPoints;
     }

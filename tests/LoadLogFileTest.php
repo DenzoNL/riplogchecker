@@ -1,7 +1,7 @@
 <?php
 namespace Tests;
 
-use elc\elc;
+use RipLogChecker\RipLogChecker;
 use PHPUnit\Framework\TestCase;
 
 class LoadLogFileTest extends TestCase
@@ -9,10 +9,10 @@ class LoadLogFileTest extends TestCase
     public function testCanLoadLogFile()
     {
         // Load log file
-        $testLog = file_get_contents('tests/test.log');
+        $testLog = file_get_contents('tests/logs/perfect_log_test.log');
 
-        // Construct elc object
-        $log_checker = new elc($testLog);
+        // Construct RipLogChecker object
+        $log_checker = new RipLogChecker($testLog);
 
         // Assert that the log file is not empty
         $this->assertNotEmpty($log_checker->getLog());

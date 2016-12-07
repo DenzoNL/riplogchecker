@@ -1,7 +1,7 @@
 {
-  "name": "denzo/elc",
+  "name": "denzo/RipLogChecker",
   "type": "library",
-  "description": "An EAC Log Checker",
+  "description": "A CD rip log checker",
   "license": "MIT",
   "authors": [
     {
@@ -17,7 +17,8 @@
   },
   "autoload": {
     "psr-4": {
-      "elc\\": "src/elc/"
+      "RipLogChecker\\": "src/RipLogChecker/",
+      "RipLogChecker\\Parsers\\": "src/RipLogChecker/Parsers"
     }
   },
   "autoload-dev": {

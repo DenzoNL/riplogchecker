@@ -1,5 +1,5 @@
 # elc
-An EAC log checker package
+A CD rip log checker package
 
 ## Installation
 
