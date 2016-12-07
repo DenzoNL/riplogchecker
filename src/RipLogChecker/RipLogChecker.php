@@ -41,20 +41,25 @@ class RipLogChecker
     }
 
     /**
-     * Analyze the log and return a score
+     * Analyze the log set the score variable
      *
-     * @return int
+     * @return bool
      */
-    protected function scoreLog(): int
+    protected function scoreLog(): bool
     {
         /* Create Parser object and pass the log */
         $parser = new EacParser($this->log);
 
-        /* Generate the final score */
-        $score = 100 - $parser->getDeductedPoints();
+        /* Parse the log */
+        if ($parser->parse()) {
+            $this->score = 100 - $parser->getDeductedPoints();
 
-        /* Finally, return the score */
-        return $score;
+            return true;
+        } else {
+            $this->score = 0;
+            return false;
+        }
+
     }
 
     /**
@@ -66,7 +71,7 @@ class RipLogChecker
     public function __construct(string $log)
     {
         $this->setLog($log);
-        $this->score = $this->scoreLog();
+        $this->scoreLog();
     }
 
     /**
