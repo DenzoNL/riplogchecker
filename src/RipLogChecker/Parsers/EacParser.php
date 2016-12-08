@@ -89,8 +89,10 @@ class EacParser extends BaseParser
      */
     protected function checkC2PointersUsed(): bool
     {
-        // TODO: Implement checkC2Pointers() method.
-        return true;
+        $pattern = "/Make use of C2 pointers : No/";
+        $result = preg_match($pattern, $this->log, $matches);
+
+        return $this->processResult($result, self::C2_POINTERS_USED);
     }
 
     /**
