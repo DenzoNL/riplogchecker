@@ -7,23 +7,23 @@ abstract class BaseParser
     /**
      * The point deduction constants
      */
-    const DEFEAT_AUDIO_CACHE_DISABLED = -5;
-    const C2_POINTERS_USED = -10;
-    const INSECURE_MODE_USED = -2;
-    const DOES_NOT_FILL_MISSING_SAMPLES = -5;
-    const GAP_HANDLING_NOT_DETECTED = -5;
-    const DELETES_SILENT_BLOCKS = -5;
-    const NULL_SAMPLES_NOT_USED = -5;
-    const ID3_TAGS_ADDED = 0;
-    const CRC_MISMATCH = -30;
-    const TEST_COPY_NOT_USED = -10;
+    const INSECURE_MODE_USED = 0;
+    const DEFEAT_AUDIO_CACHE_DISABLED = 1;
+    const C2_POINTERS_USED = 2;
+    const DOES_NOT_FILL_MISSING_SAMPLES = 3;
+    const GAP_HANDLING_NOT_DETECTED = 4;
+    const DELETES_SILENT_BLOCKS = 5;
+    const NULL_SAMPLES_NOT_USED = 6;
+    const ID3_TAGS_ADDED = 7;
+    const CRC_MISMATCH = 8;
+    const TEST_COPY_NOT_USED = 9;
 
     /**
      * Explanatory messages for the deductions
      *
      * @var array
      */
-    protected static $deductions = array(
+    protected static $errorMessages = array(
         self::DEFEAT_AUDIO_CACHE_DISABLED => 'Defeat audio cache should be yes (-5 points)',
         self::C2_POINTERS_USED => 'C2 pointers were used (-10 points)',
         self::INSECURE_MODE_USED => 'Insecure mode was used (-2 points)',
@@ -36,10 +36,28 @@ abstract class BaseParser
         self::TEST_COPY_NOT_USED => 'Test and Copy was not used (-10 points)',
     );
 
+    protected static $pointDeductions = array(
+        self::DEFEAT_AUDIO_CACHE_DISABLED => -5,
+        self::C2_POINTERS_USED => -10,
+        self::INSECURE_MODE_USED => -2,
+        self::DOES_NOT_FILL_MISSING_SAMPLES => -5,
+        self::GAP_HANDLING_NOT_DETECTED => -5,
+        self::DELETES_SILENT_BLOCKS => -5,
+        self::NULL_SAMPLES_NOT_USED => -5,
+        self::ID3_TAGS_ADDED => 0,
+        self::CRC_MISMATCH => -30,
+        self::TEST_COPY_NOT_USED => -10,
+    );
+
     /**
      * @var int
      */
     protected $deductedPoints;
+
+    /**
+     * @var array
+     */
+    protected $errors;
 
     /**
      * The full text of the log file
@@ -74,6 +92,14 @@ abstract class BaseParser
     protected function setDeductedPoints($deductedPoints)
     {
         $this->deductedPoints = $deductedPoints;
+    }
+
+    /**
+     * @return array
+     */
+    public function getErrors(): array
+    {
+        return $this->errors;
     }
 
     /**

@@ -14,7 +14,7 @@ class EacParser extends BaseParser
     {
         /* Load the log file */
         $this->log = $log;
-
+        $this->errors = [];
         /* Initialize deducted points */
         $this->setDeductedPoints(0);
     }
@@ -35,17 +35,16 @@ class EacParser extends BaseParser
         /* Parse $this->log, and return false if even one check fails
          * TODO: refactor this into something nicer if possible
          */
-        if(!$this->checkReadMode()) return false;
-        if(!$this->checkReadMode()) return false;
-        if(!$this->checkDefeatAudioCache()) return false;
-        if(!$this->checkC2PointersUsed()) return false;
-        if(!$this->checkFillUpOffsetSamples()) return false;
-        if(!$this->checkSilentBlockDeletion()) return false;
-        if(!$this->checkNullSamplesUsed()) return false;
-        if(!$this->checkGapHandling()) return false;
-        if(!$this->checkID3TagsAdded()) return false;
-        if(!$this->checkCRCMismatch()) return false;
-        if(!$this->checkTestCopyUsed()) return false;
+        if (!$this->checkReadMode()) return false;
+        if (!$this->checkDefeatAudioCache()) return false;
+        if (!$this->checkC2PointersUsed()) return false;
+        if (!$this->checkFillUpOffsetSamples()) return false;
+        if (!$this->checkSilentBlockDeletion()) return false;
+        if (!$this->checkNullSamplesUsed()) return false;
+        if (!$this->checkGapHandling()) return false;
+        if (!$this->checkID3TagsAdded()) return false;
+        if (!$this->checkCRCMismatch()) return false;
+        if (!$this->checkTestCopyUsed()) return false;
 
         /* Log parsed successfully, return true */
         return true;
@@ -60,8 +59,24 @@ class EacParser extends BaseParser
      */
     protected function checkReadMode(): bool
     {
-        // TODO: Implement checkReadMode() method.
-        return true;
+        $pattern = "/Read mode               : Secure/";
+        $result = preg_match($pattern, $this->log, $matches);
+
+        /* If we found a match, return true */
+        if($result === 1)
+        {
+            $this->errors[self::INSECURE_MODE_USED] = false;
+            return true;
+        }
+        /* If we haven't found a match, deduct score and return true */
+        elseif($result === 0)
+        {
+            $this->deductedPoints -= parent::$pointDeductions[self::INSECURE_MODE_USED];
+            $this->errors[self::INSECURE_MODE_USED] = true;
+            return true;
+        }
+
+        return $result;
     }
 
     /**
