@@ -1,5 +1,5 @@
 {
-  "name": "denzo/RipLogChecker",
+  "name": "denzo/riplogchecker",
   "type": "library",
   "description": "A CD rip log checker",
   "license": "MIT",

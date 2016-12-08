@@ -19,7 +19,7 @@ class C2PointersUsedTest extends TestCase
         /* Retrieve the errors array */
         $errors = $log_checker->getParser()->getErrors();
 
-        /* Assert that we get the INSECURE_MODE_USED error */
+        /* Assert that we get the C2_POINTERS_USED error */
         $this->assertEquals($errors[EacParser::C2_POINTERS_USED], true);
 
         /* Verify that the score is equals the score that a log with only this error would have */

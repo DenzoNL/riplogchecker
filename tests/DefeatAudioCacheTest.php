@@ -19,7 +19,7 @@ class DefeatAudioCacheTest extends TestCase
         /* Retrieve the errors array */
         $errors = $log_checker->getParser()->getErrors();
 
-        /* Assert that we get the INSECURE_MODE_USED error */
+        /* Assert that we get the DEFEAT_AUDIO_CACHE_DISABLED error */
         $this->assertEquals($errors[EacParser::DEFEAT_AUDIO_CACHE_DISABLED], true);
 
         /* Verify that the score is equals the score that a log with only this error would have */

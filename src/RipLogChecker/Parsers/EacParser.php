@@ -119,8 +119,10 @@ class EacParser extends BaseParser
      */
     protected function checkSilentBlockDeletion(): bool
     {
-        // TODO: Implement checkSilentBlockDeletion() method.
-        return true;
+        $pattern = "/Delete leading and trailing silent blocks   : No/";
+        $result = preg_match($pattern, $this->log, $matches);
+
+        return $this->processResult($result, self::DELETES_SILENT_BLOCKS);
     }
 
     /**
