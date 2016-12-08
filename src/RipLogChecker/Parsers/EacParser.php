@@ -74,8 +74,10 @@ class EacParser extends BaseParser
      */
     protected function checkDefeatAudioCache(): bool
     {
-        // TODO: Implement checkReadMode() method.
-        return true;
+        $pattern = "/Defeat audio cache      : Yes/";
+        $result = preg_match($pattern, $this->log, $matches);
+
+        return $this->processResult($result, self::DEFEAT_AUDIO_CACHE_DISABLED);
     }
 
     /**
