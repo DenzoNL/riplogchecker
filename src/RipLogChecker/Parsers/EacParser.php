@@ -133,8 +133,10 @@ class EacParser extends BaseParser
      */
     protected function checkNullSamplesUsed(): bool
     {
-        // TODO: Implement checkNullSamplesUsed() method.
-        return true;
+        $pattern = "/Null samples used in CRC calculations       : Yes/";
+        $result = preg_match($pattern, $this->log, $matches);
+
+        return $this->processResult($result, self::NULL_SAMPLES_NOT_USED);
     }
 
     /**
