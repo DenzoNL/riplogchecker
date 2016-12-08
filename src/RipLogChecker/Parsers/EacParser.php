@@ -176,8 +176,51 @@ class EacParser extends BaseParser
      */
     protected function checkCRCMismatch(): bool
     {
-        // TODO: Implement checkCRCMismatch() method.
-        return true;
+        /* Find all matches of Test CRC and Copy CRC */
+        preg_match_all('/Test CRC/', $this->log, $test_matches, PREG_OFFSET_CAPTURE);
+        preg_match_all('/Copy CRC/', $this->log, $copy_matches, PREG_OFFSET_CAPTURE);
+
+        /* Initialize arrays */
+        $testCRCs = array();
+        $copyCRCs = array();
+
+        /* Save Test CRCs into array */
+        foreach($test_matches[0] as $match)
+        {
+            $crc = substr($this->log, $match[1]+9, 8);
+            array_push($testCRCs, $crc);
+        }
+
+        /* Save Copy CRCs into array*/
+        foreach($copy_matches[0] as $match)
+        {
+            $crc = substr($this->log, $match[1]+9, 8);
+            array_push($copyCRCs, $crc);
+        }
+
+        /* Compare the arrays */
+
+        $result = array_diff($testCRCs, $copyCRCs);
+
+        /* If the array diff is empty, there are no mismatching CRCs*/
+        /* TODO: Save a list of mismatching CRCs for error reporting */
+
+        if($result == null)
+        {
+            return true;
+        }
+        else if($result != null)
+        {
+            /* TODO: Report error for every CRC mismatch */
+            $this->errors[self::CRC_MISMATCH] = true;
+            /* TODO: Deduct points for every mismatch */
+            $this->deductedPoints += parent::$pointDeductions[self::CRC_MISMATCH];
+
+            return true;
+        }
+
+        /* Something went wrong! */
+        return false;
     }
 
     /**
