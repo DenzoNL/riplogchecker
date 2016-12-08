@@ -104,8 +104,10 @@ class EacParser extends BaseParser
      */
     protected function checkFillUpOffsetSamples(): bool
     {
-        // TODO: Implement checkFillUpOffsetSamples() method.
-        return true;
+        $pattern = "/Fill up missing offset samples with silence : Yes/";
+        $result = preg_match($pattern, $this->log, $matches);
+
+        return $this->processResult($result, self::DOES_NOT_FILL_MISSING_SAMPLES);
     }
 
     /**

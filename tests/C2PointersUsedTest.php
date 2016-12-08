@@ -8,7 +8,7 @@ use RipLogChecker\RipLogChecker;
 
 class C2PointersUsedTest extends TestCase
 {
-    public function testDetectInsecureReadMode()
+    public function testC2PointersUsedCheck()
     {
         /* Load log file */
         $testLog = file_get_contents('tests/logs/c2_pointers_used_test.log');
@@ -23,6 +23,6 @@ class C2PointersUsedTest extends TestCase
         $this->assertEquals($errors[EacParser::C2_POINTERS_USED], true);
 
         /* Verify that the score is equals the score that a log with only this error would have */
-        $this->assertEquals($log_checker->getScore(), 90);
+        $this->assertEquals(90, $log_checker->getScore());
     }
 }

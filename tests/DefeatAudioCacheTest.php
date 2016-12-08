@@ -8,7 +8,7 @@ use RipLogChecker\RipLogChecker;
 
 class DefeatAudioCacheTest extends TestCase
 {
-    public function testDetectInsecureReadMode()
+    public function testDefeatAudioCacheCheck()
     {
         /* Load log file */
         $testLog = file_get_contents('tests/logs/defeat_audio_cache_test.log');
@@ -23,6 +23,6 @@ class DefeatAudioCacheTest extends TestCase
         $this->assertEquals($errors[EacParser::DEFEAT_AUDIO_CACHE_DISABLED], true);
 
         /* Verify that the score is equals the score that a log with only this error would have */
-        $this->assertEquals($log_checker->getScore(), 95);
+        $this->assertEquals(95, $log_checker->getScore());
     }
 }
