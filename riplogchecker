@@ -1,0 +1,68 @@
+#!/usr/bin/env php
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader
+| for our application. We just need to utilize it! We'll require it
+| into the script here so that we do not have to worry about the
+| loading of any our classes "manually". Feels great to relax.
+|
+*/
+require __DIR__.'/vendor/autoload.php';
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Process the arguments and output the result!
+|
+*/
+
+$input = new Symfony\Component\Console\Input\ArgvInput;
+$output = new Symfony\Component\Console\Output\ConsoleOutput();
+
+$logFile = file_get_contents(__DIR__.'/'.trim($input,'""'));
+$logChecker = new \RipLogChecker\RipLogChecker($logFile);
+$errors = $logChecker->getParser()->getErrors();
+
+$output->writeln('Score: ' . $logChecker->getScore());
+
+if($errors != null) {
+
+    /* Initialize errorMessages array */
+    $errorMessages = array();
+    $numErrors = 0;
+
+    /* Loop through the errors, if they're set to true, push the error message to the array*/
+    for($i = 0; $i < count($errors); $i++)
+    {
+        if($errors[$i] == true)
+        {
+            array_push($errorMessages, \RipLogChecker\Parsers\EacParser::$errorMessages[$i]);
+            $numErrors++;
+        }
+    }
+
+    if($numErrors == 0){
+        $output->writeln('There were no errors reported.');
+    }
+    elseif($numErrors == 1){
+        $output->writeln('There was ' . $numErrors  . ' error reported.');
+    }
+    else {
+        $output->writeln('There were ' . $numErrors  . ' errors reported.');
+    }
+
+    foreach($errorMessages as $errorMessage)
+    {
+        $output->writeln($errorMessage);
+    }
+}
+

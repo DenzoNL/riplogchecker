@@ -9,6 +9,12 @@ $ composer require denzo/riplogchecker
 ```
 ## Usage
 
+## Command line interface
+
+```
+$ php riplogchecker path/to/log/file.log
+```
+
 ### In code
 ```php
 /* Make sure we use the RipLogChecker class*/

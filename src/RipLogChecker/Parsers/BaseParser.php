@@ -23,10 +23,10 @@ abstract class BaseParser
      *
      * @var array
      */
-    protected static $errorMessages = array(
+    public static $errorMessages = array(
+        self::INSECURE_MODE_USED => 'Insecure mode was used (-2 points)',
         self::DEFEAT_AUDIO_CACHE_DISABLED => 'Defeat audio cache should be yes (-5 points)',
         self::C2_POINTERS_USED => 'C2 pointers were used (-10 points)',
-        self::INSECURE_MODE_USED => 'Insecure mode was used (-2 points)',
         self::DOES_NOT_FILL_MISSING_SAMPLES => 'Does not fill up missing offset samples with silence (-5 points)',
         self::GAP_HANDLING_NOT_DETECTED => 'Gap handling was not detected (-5 points)',
         self::DELETES_SILENT_BLOCKS => 'Deletes leading and trailing silent blocks (-5 points)',
@@ -37,9 +37,9 @@ abstract class BaseParser
     );
 
     protected static $pointDeductions = array(
+        self::INSECURE_MODE_USED => -2,
         self::DEFEAT_AUDIO_CACHE_DISABLED => -5,
         self::C2_POINTERS_USED => -10,
-        self::INSECURE_MODE_USED => -2,
         self::DOES_NOT_FILL_MISSING_SAMPLES => -5,
         self::GAP_HANDLING_NOT_DETECTED => -5,
         self::DELETES_SILENT_BLOCKS => -5,
