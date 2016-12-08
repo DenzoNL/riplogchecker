@@ -62,21 +62,7 @@ class EacParser extends BaseParser
         $pattern = "/Read mode               : Secure/";
         $result = preg_match($pattern, $this->log, $matches);
 
-        /* If we found a match, return true */
-        if($result === 1)
-        {
-            $this->errors[self::INSECURE_MODE_USED] = false;
-            return true;
-        }
-        /* If we haven't found a match, deduct score and return true */
-        elseif($result === 0)
-        {
-            $this->deductedPoints -= parent::$pointDeductions[self::INSECURE_MODE_USED];
-            $this->errors[self::INSECURE_MODE_USED] = true;
-            return true;
-        }
-
-        return $result;
+        return $this->processResult($result, self::INSECURE_MODE_USED);
     }
 
     /**
@@ -190,5 +176,36 @@ class EacParser extends BaseParser
     {
         // TODO: Implement checkTestCopyUsed() method.
         return true;
+    }
+
+    /**
+     * Processes the result of a preg_match()
+     *
+     * @param $result - The preg_match() result
+     * @param $check - The point deduction check constant
+     * @return bool
+     */
+    protected function processResult($result, $check): bool
+    {
+        /* If we found a match, return true */
+        if ($result === 1) {
+            /* Set INSECURE_MODE_USED to false in $this->errors */
+            $this->errors[$check] = false;
+
+            /* Return true */
+            return true;
+
+        } /* If we haven't found a match, deduct score and return true */
+        elseif ($result === 0) {
+            /* Add -2 points to $this->deductedPoints */
+            $this->deductedPoints += parent::$pointDeductions[$check];
+
+            /* Set INSECURE_MODE_USED to true in $this->errors */
+            $this->errors[$check] = true;
+            return true;
+        }
+
+        /* Return false if preg_match fails */
+        return $result;
     }
 }

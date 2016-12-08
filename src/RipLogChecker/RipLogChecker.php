@@ -58,7 +58,7 @@ class RipLogChecker
 
         /* Parse the log */
         if ($this->parser->parse()) {
-            $this->score -= $this->parser->getDeductedPoints();
+            $this->score += $this->parser->getDeductedPoints();
             return true;
         } else {
             $this->score = 0;
