@@ -148,8 +148,10 @@ class EacParser extends BaseParser
      */
     protected function checkGapHandling(): bool
     {
-        // TODO: Implement checkGapHandling() method.
-        return true;
+        $pattern = "/Gap handling                                : Appended to previous track/";
+        $result = preg_match($pattern, $this->log, $matches);
+
+        return $this->processResult($result, self::GAP_HANDLING_NOT_DETECTED);
     }
 
     /**
