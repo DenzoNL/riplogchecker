@@ -162,8 +162,10 @@ class EacParser extends BaseParser
      */
     protected function checkID3TagsAdded(): bool
     {
-        // TODO: Implement checkID3TagsAdded() method.
-        return true;
+        $pattern = "/Add ID3 tag                     : No/";
+        $result = preg_match($pattern, $this->log, $matches);
+
+        return $this->processResult($result, self::ID3_TAGS_ADDED);
     }
 
     /**
