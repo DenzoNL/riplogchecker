@@ -25,10 +25,9 @@ require __DIR__.'/vendor/autoload.php';
 |
 */
 
-$input = new Symfony\Component\Console\Input\ArgvInput;
 $output = new Symfony\Component\Console\Output\ConsoleOutput();
 
-$logFile = file_get_contents(trim($input,'""'));
+$logFile = file_get_contents($argv[1]);
 $logChecker = new \RipLogChecker\RipLogChecker($logFile);
 $errors = $logChecker->getParser()->getErrors();
 
