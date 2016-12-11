@@ -1,4 +1,4 @@
-# Rip Log Checker [![Build Status](https://travis-ci.org/DenzoNL/riplogchecker.svg?branch=master)](https://travis-ci.org/DenzoNL/riplogchecker)
+# Rip Log Checker [![Build Status](https://travis-ci.org/DenzoNL/riplogchecker.svg?branch=master)](https://travis-ci.org/DenzoNL/riplogchecker) [![StyleCI](https://styleci.io/repos/75951674/shield?branch=master)](https://styleci.io/repos/75951674)
 A CD rip log checker package. Currently only supports EAC rip logs.
 
 ## Notice - Alpha software
