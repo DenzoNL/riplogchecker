@@ -8,7 +8,7 @@ use RipLogChecker\Parsers\EacParser;
 class RipLogChecker
 {
     /**
-     * The full text of the log file
+     * The full text of the log file.
      *
      * @var string
      */
@@ -20,14 +20,14 @@ class RipLogChecker
     protected $parser;
 
     /**
-     * The log score
+     * The log score.
      *
      * @var int
      */
     protected $score;
 
     /**
-     * Gets log file
+     * Gets log file.
      *
      * @return string
      */
@@ -37,7 +37,7 @@ class RipLogChecker
     }
 
     /**
-     * Sets the log file
+     * Sets the log file.
      *
      * @param string $log
      */
@@ -47,7 +47,7 @@ class RipLogChecker
     }
 
     /**
-     * Analyze the log set the score variable
+     * Analyze the log set the score variable.
      *
      * @return bool
      */
@@ -59,18 +59,20 @@ class RipLogChecker
         /* Parse the log */
         if ($this->parser->parse()) {
             $this->score += $this->parser->getDeductedPoints();
+
             return true;
         } else {
             $this->score = 0;
+
             return false;
         }
-
     }
 
     /**
-     * Creates a new RipLogChecker object based on the log file, and scores it
+     * Creates a new RipLogChecker object based on the log file, and scores it.
      *
      * RipLogChecker constructor.
+     *
      * @param string $log
      */
     public function __construct(string $log)
@@ -86,7 +88,7 @@ class RipLogChecker
     }
 
     /**
-     * Get the log score
+     * Get the log score.
      *
      * @return int
      */

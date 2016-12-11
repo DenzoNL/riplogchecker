@@ -5,7 +5,7 @@ namespace RipLogChecker\Parsers;
 abstract class BaseParser
 {
     /**
-     * The point deduction constants
+     * The point deduction constants.
      */
     const INSECURE_MODE_USED = 0;
     const DEFEAT_AUDIO_CACHE_DISABLED = 1;
@@ -19,35 +19,35 @@ abstract class BaseParser
     const TEST_COPY_NOT_USED = 9;
 
     /**
-     * Explanatory messages for the deductions
+     * Explanatory messages for the deductions.
      *
      * @var array
      */
-    public static $errorMessages = array(
-        self::INSECURE_MODE_USED => 'Insecure mode was used (-2 points)',
-        self::DEFEAT_AUDIO_CACHE_DISABLED => 'Defeat audio cache should be yes (-5 points)',
-        self::C2_POINTERS_USED => 'C2 pointers were used (-10 points)',
+    public static $errorMessages = [
+        self::INSECURE_MODE_USED            => 'Insecure mode was used (-2 points)',
+        self::DEFEAT_AUDIO_CACHE_DISABLED   => 'Defeat audio cache should be yes (-5 points)',
+        self::C2_POINTERS_USED              => 'C2 pointers were used (-10 points)',
         self::DOES_NOT_FILL_MISSING_SAMPLES => 'Does not fill up missing offset samples with silence (-5 points)',
-        self::GAP_HANDLING_NOT_DETECTED => 'Gap handling was not detected (-5 points)',
-        self::DELETES_SILENT_BLOCKS => 'Deletes leading and trailing silent blocks (-5 points)',
-        self::NULL_SAMPLES_NOT_USED => 'Null samples should be used in CRC calculations (-5 points)',
-        self::ID3_TAGS_ADDED => 'ID3 tags should not be added to FLAC files. FLAC files should have Vorbis comments for tags instead.',
-        self::CRC_MISMATCH => 'CRC mismatch (-30 points)',
-        self::TEST_COPY_NOT_USED => 'Test and Copy was not used (-10 points)',
-    );
+        self::GAP_HANDLING_NOT_DETECTED     => 'Gap handling was not detected (-5 points)',
+        self::DELETES_SILENT_BLOCKS         => 'Deletes leading and trailing silent blocks (-5 points)',
+        self::NULL_SAMPLES_NOT_USED         => 'Null samples should be used in CRC calculations (-5 points)',
+        self::ID3_TAGS_ADDED                => 'ID3 tags should not be added to FLAC files. FLAC files should have Vorbis comments for tags instead.',
+        self::CRC_MISMATCH                  => 'CRC mismatch (-30 points)',
+        self::TEST_COPY_NOT_USED            => 'Test and Copy was not used (-10 points)',
+    ];
 
-    protected static $pointDeductions = array(
-        self::INSECURE_MODE_USED => -2,
-        self::DEFEAT_AUDIO_CACHE_DISABLED => -5,
-        self::C2_POINTERS_USED => -10,
+    protected static $pointDeductions = [
+        self::INSECURE_MODE_USED            => -2,
+        self::DEFEAT_AUDIO_CACHE_DISABLED   => -5,
+        self::C2_POINTERS_USED              => -10,
         self::DOES_NOT_FILL_MISSING_SAMPLES => -5,
-        self::GAP_HANDLING_NOT_DETECTED => -5,
-        self::DELETES_SILENT_BLOCKS => -5,
-        self::NULL_SAMPLES_NOT_USED => -5,
-        self::ID3_TAGS_ADDED => 0,
-        self::CRC_MISMATCH => -30,
-        self::TEST_COPY_NOT_USED => -10,
-    );
+        self::GAP_HANDLING_NOT_DETECTED     => -5,
+        self::DELETES_SILENT_BLOCKS         => -5,
+        self::NULL_SAMPLES_NOT_USED         => -5,
+        self::ID3_TAGS_ADDED                => 0,
+        self::CRC_MISMATCH                  => -30,
+        self::TEST_COPY_NOT_USED            => -10,
+    ];
 
     /**
      * @var int
@@ -60,7 +60,7 @@ abstract class BaseParser
     protected $errors;
 
     /**
-     * The full text of the log file
+     * The full text of the log file.
      *
      * @var string
      */
@@ -68,14 +68,14 @@ abstract class BaseParser
 
     /**
      * Parses the log file, and returns false if it
-     * fails to parse the log file
+     * fails to parse the log file.
      *
      * @return bool
      */
     abstract public function parse(): bool;
 
     /**
-     * Get the number of points deducted
+     * Get the number of points deducted.
      *
      * @return int
      */
@@ -85,7 +85,7 @@ abstract class BaseParser
     }
 
     /**
-     * Sets the number of points deducted as a result of checking the logs
+     * Sets the number of points deducted as a result of checking the logs.
      *
      * @param int $deductedPoints
      */
@@ -105,7 +105,7 @@ abstract class BaseParser
     /**
      * Check if the read mode set to secure,
      * set the $deductedPoints and return false if it fails
-     * to check the read mode
+     * to check the read mode.
      *
      * @return bool
      */
@@ -114,7 +114,7 @@ abstract class BaseParser
     /**
      * Check if "Defeat audio cache" is set to yes,
      * set the $deductedPoints and return false if it fails
-     * to check the read mode
+     * to check the read mode.
      *
      * @return bool
      */
@@ -123,7 +123,7 @@ abstract class BaseParser
     /**
      * Check if C2 pointers is set to no,
      * set the $deductedPoints and return false if it fails
-     * to check the read mode
+     * to check the read mode.
      *
      * @return bool
      */
@@ -132,7 +132,7 @@ abstract class BaseParser
     /**
      * Check whether "Fill up missing offset samples with silence"
      * is set to yes and set the $deductedPoints and return false
-     * if it fails
+     * if it fails.
      *
      * @return bool
      */
@@ -141,7 +141,7 @@ abstract class BaseParser
     /**
      * Check if "Delete leading and trailing silent blocks"
      * is set to "No" and set the $deductedPoints and return
-     * false if it fails
+     * false if it fails.
      *
      * @return bool
      */
@@ -149,7 +149,7 @@ abstract class BaseParser
 
     /**
      * Check if Null samples are used in CRC calculations,
-     * set the $deductedPoints and return false if it fails
+     * set the $deductedPoints and return false if it fails.
      *
      * @return bool
      */
@@ -158,7 +158,7 @@ abstract class BaseParser
     /**
      * Check whether gap handling was detected
      * and if the correct mode was used, then set
-     * $deductedPoints. Returns false on failure;
+     * $deductedPoints. Returns false on failure;.
      *
      * @return bool
      */
