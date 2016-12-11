@@ -1,8 +1,9 @@
 <?php
+
 namespace Tests;
 
-use RipLogChecker\RipLogChecker;
 use PHPUnit\Framework\TestCase;
+use RipLogChecker\RipLogChecker;
 
 class PerfectScoreLogTest extends TestCase
 {

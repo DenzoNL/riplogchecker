@@ -5,9 +5,10 @@ namespace RipLogChecker\Parsers;
 class EacParser extends BaseParser
 {
     /**
-     * Creates a new EacParser object based on the log file provided, and parses it
+     * Creates a new EacParser object based on the log file provided, and parses it.
      *
      * RipLogChecker constructor.
+     *
      * @param string $log
      */
     public function __construct(string $log)
@@ -21,7 +22,7 @@ class EacParser extends BaseParser
 
     /**
      * Parses the log file, and returns false if it
-     * fails to parse the log file
+     * fails to parse the log file.
      *
      * @return bool
      */
@@ -35,16 +36,36 @@ class EacParser extends BaseParser
         /* Parse $this->log, and return false if even one check fails
          * TODO: refactor this into something nicer if possible
          */
-        if (!$this->checkReadMode()) return false;
-        if (!$this->checkDefeatAudioCache()) return false;
-        if (!$this->checkC2PointersUsed()) return false;
-        if (!$this->checkFillUpOffsetSamples()) return false;
-        if (!$this->checkSilentBlockDeletion()) return false;
-        if (!$this->checkNullSamplesUsed()) return false;
-        if (!$this->checkGapHandling()) return false;
-        if (!$this->checkID3TagsAdded()) return false;
-        if (!$this->checkCRCMismatch()) return false;
-        if (!$this->checkTestCopyUsed()) return false;
+        if (!$this->checkReadMode()) {
+            return false;
+        }
+        if (!$this->checkDefeatAudioCache()) {
+            return false;
+        }
+        if (!$this->checkC2PointersUsed()) {
+            return false;
+        }
+        if (!$this->checkFillUpOffsetSamples()) {
+            return false;
+        }
+        if (!$this->checkSilentBlockDeletion()) {
+            return false;
+        }
+        if (!$this->checkNullSamplesUsed()) {
+            return false;
+        }
+        if (!$this->checkGapHandling()) {
+            return false;
+        }
+        if (!$this->checkID3TagsAdded()) {
+            return false;
+        }
+        if (!$this->checkCRCMismatch()) {
+            return false;
+        }
+        if (!$this->checkTestCopyUsed()) {
+            return false;
+        }
 
         /* Log parsed successfully, return true */
         return true;
@@ -53,13 +74,13 @@ class EacParser extends BaseParser
     /**
      * Check whether the read mode is secure or insecure,
      * set the $deductedPoints and return false if it fails
-     * to check the read mode
+     * to check the read mode.
      *
      * @return bool
      */
     protected function checkReadMode(): bool
     {
-        $pattern = "/Read mode               : Secure/";
+        $pattern = '/Read mode               : Secure/';
         $result = preg_match($pattern, $this->log, $matches);
 
         return $this->processResult($result, self::INSECURE_MODE_USED);
@@ -68,13 +89,13 @@ class EacParser extends BaseParser
     /**
      * Check if "Defeat audio cache" is set to yes,
      * set the $deductedPoints and return false if it fails
-     * to check the read mode
+     * to check the read mode.
      *
      * @return bool
      */
     protected function checkDefeatAudioCache(): bool
     {
-        $pattern = "/Defeat audio cache      : Yes/";
+        $pattern = '/Defeat audio cache      : Yes/';
         $result = preg_match($pattern, $this->log, $matches);
 
         return $this->processResult($result, self::DEFEAT_AUDIO_CACHE_DISABLED);
@@ -83,13 +104,13 @@ class EacParser extends BaseParser
     /**
      * Check if C2 pointers is set to no,
      * set the $deductedPoints and return false if it fails
-     * to check the read mode
+     * to check the read mode.
      *
      * @return bool
      */
     protected function checkC2PointersUsed(): bool
     {
-        $pattern = "/Make use of C2 pointers : No/";
+        $pattern = '/Make use of C2 pointers : No/';
         $result = preg_match($pattern, $this->log, $matches);
 
         return $this->processResult($result, self::C2_POINTERS_USED);
@@ -98,13 +119,13 @@ class EacParser extends BaseParser
     /**
      * Check whether "Fill up missing offset samples with silence"
      * is set to yes and set the $deductedPoints and return false
-     * if it fails
+     * if it fails.
      *
      * @return bool
      */
     protected function checkFillUpOffsetSamples(): bool
     {
-        $pattern = "/Fill up missing offset samples with silence : Yes/";
+        $pattern = '/Fill up missing offset samples with silence : Yes/';
         $result = preg_match($pattern, $this->log, $matches);
 
         return $this->processResult($result, self::DOES_NOT_FILL_MISSING_SAMPLES);
@@ -113,13 +134,13 @@ class EacParser extends BaseParser
     /**
      * Check if "Delete leading and trailing silent blocks"
      * is set to "No" and set the $deductedPoints and return
-     * false if it fails
+     * false if it fails.
      *
      * @return bool
      */
     protected function checkSilentBlockDeletion(): bool
     {
-        $pattern = "/Delete leading and trailing silent blocks   : No/";
+        $pattern = '/Delete leading and trailing silent blocks   : No/';
         $result = preg_match($pattern, $this->log, $matches);
 
         return $this->processResult($result, self::DELETES_SILENT_BLOCKS);
@@ -127,13 +148,13 @@ class EacParser extends BaseParser
 
     /**
      * Check if Null samples are used in CRC calculations,
-     * set the $deductedPoints and return false if it fails
+     * set the $deductedPoints and return false if it fails.
      *
      * @return bool
      */
     protected function checkNullSamplesUsed(): bool
     {
-        $pattern = "/Null samples used in CRC calculations       : Yes/";
+        $pattern = '/Null samples used in CRC calculations       : Yes/';
         $result = preg_match($pattern, $this->log, $matches);
 
         return $this->processResult($result, self::NULL_SAMPLES_NOT_USED);
@@ -142,13 +163,13 @@ class EacParser extends BaseParser
     /**
      * Check whether gap handling was detected
      * and if the correct mode was used, then set
-     * $deductedPoints. Returns false on failure;
+     * $deductedPoints. Returns false on failure;.
      *
      * @return bool
      */
     protected function checkGapHandling(): bool
     {
-        $pattern = "/Gap handling                                : Appended to previous track/";
+        $pattern = '/Gap handling                                : Appended to previous track/';
         $result = preg_match($pattern, $this->log, $matches);
 
         return $this->processResult($result, self::GAP_HANDLING_NOT_DETECTED);
@@ -162,7 +183,7 @@ class EacParser extends BaseParser
      */
     protected function checkID3TagsAdded(): bool
     {
-        $pattern = "/Add ID3 tag                     : No/";
+        $pattern = '/Add ID3 tag                     : No/';
         $result = preg_match($pattern, $this->log, $matches);
 
         return $this->processResult($result, self::ID3_TAGS_ADDED);
@@ -181,20 +202,18 @@ class EacParser extends BaseParser
         preg_match_all('/Copy CRC/', $this->log, $copy_matches, PREG_OFFSET_CAPTURE);
 
         /* Initialize arrays */
-        $testCRCs = array();
-        $copyCRCs = array();
+        $testCRCs = [];
+        $copyCRCs = [];
 
         /* Save Test CRCs into array */
-        foreach($test_matches[0] as $match)
-        {
-            $crc = substr($this->log, $match[1]+9, 8);
+        foreach ($test_matches[0] as $match) {
+            $crc = substr($this->log, $match[1] + 9, 8);
             array_push($testCRCs, $crc);
         }
 
         /* Save Copy CRCs into array*/
-        foreach($copy_matches[0] as $match)
-        {
-            $crc = substr($this->log, $match[1]+9, 8);
+        foreach ($copy_matches[0] as $match) {
+            $crc = substr($this->log, $match[1] + 9, 8);
             array_push($copyCRCs, $crc);
         }
 
@@ -205,12 +224,9 @@ class EacParser extends BaseParser
         /* If the array diff is empty, there are no mismatching CRCs*/
         /* TODO: Save a list of mismatching CRCs for error reporting */
 
-        if($result == null)
-        {
+        if ($result == null) {
             return true;
-        }
-        else if($result != null)
-        {
+        } elseif ($result != null) {
             /* TODO: Report error for every CRC mismatch */
             $this->errors[self::CRC_MISMATCH] = true;
             /* TODO: Deduct points for every mismatch */
@@ -236,10 +252,11 @@ class EacParser extends BaseParser
     }
 
     /**
-     * Processes the result of a preg_match()
+     * Processes the result of a preg_match().
      *
      * @param $result - The preg_match() result
      * @param $check - The point deduction check constant
+     *
      * @return bool
      */
     protected function processResult($result, $check): bool
@@ -251,7 +268,6 @@ class EacParser extends BaseParser
 
             /* Return true */
             return true;
-
         } /* If we haven't found a match, deduct score and return true */
         elseif ($result === 0) {
             /* Add -2 points to $this->deductedPoints */
@@ -259,6 +275,7 @@ class EacParser extends BaseParser
 
             /* Set INSECURE_MODE_USED to true in $this->errors */
             $this->errors[$check] = true;
+
             return true;
         }
 
