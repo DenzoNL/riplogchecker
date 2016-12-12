@@ -3,8 +3,8 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use RipLogChecker\Scorers\EacScorer;
 use RipLogChecker\RipLogChecker;
+use RipLogChecker\Scorers\EacScorer;
 
 class C2PointersUsedTest extends TestCase
 {

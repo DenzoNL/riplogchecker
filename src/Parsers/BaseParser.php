@@ -44,6 +44,7 @@ abstract class BaseParser
      * Return true on success and false on failure.
      *
      * @param $log
+     *
      * @return bool
      */
     abstract public function parse($log): bool;
@@ -164,6 +165,7 @@ abstract class BaseParser
 
     /**
      * Find the bitrate in kilobits.
+     *
      * @return int
      */
     abstract protected function getSelectedBitrate(): int;
@@ -194,6 +196,7 @@ abstract class BaseParser
      * Find track data by track number.
      *
      * @param int $number
+     *
      * @return string
      */
     abstract protected function getTrackData(int $number): string;
@@ -202,6 +205,7 @@ abstract class BaseParser
      * Get the filename of a given track.
      *
      * @param string $track
+     *
      * @return string
      */
     abstract protected function getTrackFileName(string $track): string;
@@ -210,6 +214,7 @@ abstract class BaseParser
      * Get the pregap length for a given track.
      *
      * @param string $track
+     *
      * @return string
      */
     abstract protected function getTrackPregapLength(string $track): string;
@@ -218,6 +223,7 @@ abstract class BaseParser
      * Gets the peak level for a given track.
      *
      * @param string $track
+     *
      * @return float
      */
     abstract protected function getTrackPeakLevel(string $track): float;
@@ -226,15 +232,16 @@ abstract class BaseParser
      * Gets the extraction speed for a given track.
      *
      * @param string $track
+     *
      * @return float
      */
     abstract protected function getTrackExtractionSpeed(string $track): float;
-
 
     /**
      * Gets the track quality for a given track.
      *
      * @param string $track
+     *
      * @return float
      */
     abstract protected function getTrackQuality(string $track): float;
@@ -243,6 +250,7 @@ abstract class BaseParser
      * Gets the test CRC for a given track.
      *
      * @param string $track
+     *
      * @return string
      */
     abstract protected function getTrackTestCrc(string $track): string;
@@ -251,14 +259,16 @@ abstract class BaseParser
      * Gets the copy CRC for a given track.
      *
      * @param string $track
+     *
      * @return string
      */
     abstract protected function getTrackCopyCrc(string $track): string;
 
     /**
-     * Gets the AccurateRip confidence level for a given track
+     * Gets the AccurateRip confidence level for a given track.
      *
      * @param string $track
+     *
      * @return int
      */
     abstract protected function getAccurateRipConfidence(string $track): int;
@@ -267,6 +277,7 @@ abstract class BaseParser
      * Get the copy result for a given track.
      *
      * @param string $track
+     *
      * @return string
      */
     abstract protected function getCopyResult(string $track): string;
