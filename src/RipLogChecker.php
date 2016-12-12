@@ -2,8 +2,8 @@
 
 namespace RipLogChecker;
 
-use RipLogChecker\Parsers\BaseParser;
-use RipLogChecker\Parsers\EacParser;
+use RipLogChecker\Scorers\BaseScorer;
+use RipLogChecker\Scorers\EacScorer;
 
 class RipLogChecker
 {
@@ -15,9 +15,9 @@ class RipLogChecker
     protected $log;
 
     /**
-     * @var BaseParser
+     * @var BaseScorer
      */
-    protected $parser;
+    protected $scorer;
 
     /**
      * The log score.
@@ -54,11 +54,11 @@ class RipLogChecker
     protected function scoreLog(): bool
     {
         /* Create Parser object and pass the log */
-        $this->parser = new EacParser($this->log);
+        $this->scorer = new EacScorer($this->log);
 
         /* Parse the log */
-        if ($this->parser->parse()) {
-            $this->score += $this->parser->getDeductedPoints();
+        if ($this->scorer->score()) {
+            $this->score += $this->scorer->getDeductedPoints();
 
             return true;
         } else {
@@ -98,18 +98,18 @@ class RipLogChecker
     }
 
     /**
-     * @return BaseParser
+     * @return BaseScorer
      */
-    public function getParser(): BaseParser
+    public function getScorer(): BaseScorer
     {
-        return $this->parser;
+        return $this->scorer;
     }
 
     /**
-     * @param BaseParser $parser
+     * @param BaseScorer $scorer
      */
-    public function setParser(BaseParser $parser)
+    public function setScorer(BaseScorer $scorer)
     {
-        $this->parser = $parser;
+        $this->scorer = $scorer;
     }
 }

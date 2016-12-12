@@ -3,7 +3,7 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use RipLogChecker\Parsers\EacParser;
+use RipLogChecker\Scorers\EacScorer;
 use RipLogChecker\RipLogChecker;
 
 class OffsetSampleFillUsedTest extends TestCase
@@ -17,10 +17,10 @@ class OffsetSampleFillUsedTest extends TestCase
         $log_checker = new RipLogChecker($testLog);
 
         /* Retrieve the errors array */
-        $errors = $log_checker->getParser()->getErrors();
+        $errors = $log_checker->getScorer()->getErrors();
 
         /* Assert that we get the DOES_NOT_FILL_MISSING_SAMPLES error */
-        $this->assertEquals($errors[EacParser::DOES_NOT_FILL_MISSING_SAMPLES], true);
+        $this->assertEquals($errors[EacScorer::DOES_NOT_FILL_MISSING_SAMPLES], true);
 
         /* Verify that the score is equals the score that a log with only this error would have */
         $this->assertEquals(95, $log_checker->getScore());

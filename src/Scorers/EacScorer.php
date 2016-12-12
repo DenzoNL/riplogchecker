@@ -1,8 +1,8 @@
 <?php
 
-namespace RipLogChecker\Parsers;
+namespace RipLogChecker\Scorers;
 
-class EacParser extends BaseParser
+class EacScorer extends BaseScorer
 {
     /**
      * Creates a new EacParser object based on the log file provided, and parses it.
@@ -26,7 +26,7 @@ class EacParser extends BaseParser
      *
      * @return bool
      */
-    public function parse(): bool
+    public function score(): bool
     {
         /* If the log is empty, return false */
         if (!$this->log) {

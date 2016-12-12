@@ -29,7 +29,7 @@ $output = new Symfony\Component\Console\Output\ConsoleOutput();
 
 $logFile = file_get_contents($argv[1]);
 $logChecker = new \RipLogChecker\RipLogChecker($logFile);
-$errors = $logChecker->getParser()->getErrors();
+$errors = $logChecker->getScorer()->getErrors();
 
 $output->writeln('Score: ' . $logChecker->getScore());
 
@@ -44,7 +44,7 @@ if($errors != null) {
     {
         if($errors[$i] == true)
         {
-            array_push($errorMessages, \RipLogChecker\Parsers\EacParser::$errorMessages[$i]);
+            array_push($errorMessages, \RipLogChecker\Scorers\EacScorer::$errorMessages[$i]);
             $numErrors++;
         }
     }

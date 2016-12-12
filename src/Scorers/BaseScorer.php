@@ -1,8 +1,8 @@
 <?php
 
-namespace RipLogChecker\Parsers;
+namespace RipLogChecker\Scorers;
 
-abstract class BaseParser
+abstract class BaseScorer
 {
     /**
      * The point deduction constants.
@@ -72,7 +72,7 @@ abstract class BaseParser
      *
      * @return bool
      */
-    abstract public function parse(): bool;
+    abstract public function score(): bool;
 
     /**
      * Get the number of points deducted.

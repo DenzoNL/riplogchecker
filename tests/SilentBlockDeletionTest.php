@@ -3,7 +3,7 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use RipLogChecker\Parsers\EacParser;
+use RipLogChecker\Scorers\EacScorer;
 use RipLogChecker\RipLogChecker;
 
 class SilentBlockDeletionTest extends TestCase
@@ -17,10 +17,10 @@ class SilentBlockDeletionTest extends TestCase
         $log_checker = new RipLogChecker($testLog);
 
         /* Retrieve the errors array */
-        $errors = $log_checker->getParser()->getErrors();
+        $errors = $log_checker->getScorer()->getErrors();
 
         /* Assert that we get the DELETES_SILENT_BLOCKS error */
-        $this->assertEquals($errors[EacParser::DELETES_SILENT_BLOCKS], true);
+        $this->assertEquals($errors[EacScorer::DELETES_SILENT_BLOCKS], true);
 
         /* Verify that the score is equals the score that a log with only this error would have */
         $this->assertEquals(95, $log_checker->getScore());
