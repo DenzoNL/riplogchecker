@@ -1,0 +1,209 @@
+{
+	"metadata": {
+		"software_version": "Exact Audio Copy V1.0 beta 3 from 29. August 2011",
+		"log_date": "27. July 2014, 12:00",
+		"album_artist": "Beastie Boys",
+		"album_name": "The Mix Up",
+		"used_drive": "TSSTcorpDVD+-RW TS-U633F",
+		"checksum": "063F494868CFFFAF6D2A4A93E0E326D904B44F0C307320DD75209A4D53960D20",
+		"all_tracks_accurately_ripped": true,
+		"no_errors_occured": true
+	},
+	"options": {
+		"drive_options": {
+			"read_mode": "Secure",
+			"utilize_accurate_stream": true,
+			"defeat_audio_cache": false,
+			"make_use_of_c2_pointers": false
+		},
+		"read_options": {
+			"read_offset_correction": 6,
+			"overread_into_leadin_and_leadout": false,
+			"fill_up_missing_offset_samples_with_silence": true,
+			"null_samples_used_in_crc_calculations": true,	
+			"used_interface": "Installed external ASPI interface"	
+		},
+		"output_options": {
+			"used_output_format": "User Defined Encoder",
+			"selected_bitrate": "1024 kBit/s",
+			"quality": "High",
+			"add_id3_tag": "No",
+			"command_line_compressor": "C:\\Program Files\\Exact Audio Copy\\Flac\\flac.exe"
+		}
+	},
+	"tracks": [
+		{
+			"filename": "01 - B For My Name.wav",
+			"pregap_length": "0:00:02.00",
+			"peak_level": 98.2,
+			"extraction_speed": 2.6,
+			"track_quality": 100.0,
+			"checksums": {
+				"test_crc": "C7452E96",
+				"copy_crc": "C7452E96"
+			},
+			"accurate_rip_confidence": 3,
+			"copy": "OK"
+		},
+		{
+			"filename": "02 - 14th St. Break.wav",
+			"peak_level": 94.1,
+			"extraction_speed": 2.8,
+			"track_quality": 100.0,
+			"checksums": {
+				"test_crc": "1B70C0D5",
+				"copy_crc": "1B70C0D5"
+			},
+			"accurate_rip_confidence": 3,
+			"copy": "OK"
+		},
+		{
+			"filename": "03 - Suco De Tangerina.wav",
+			"peak_level": 99.8,
+			"extraction_speed": 3.0,
+			"track_quality": 100.0,
+			"checksums": {
+				"test_crc": "DAC61F41",
+				"copy_crc": "DAC61F41"
+			},
+			"accurate_rip_confidence": 3,
+			"copy": "OK"
+		},
+		{
+			"filename": "04 - The Gala Event.wav",
+			"peak_level": 99.0,
+			"extraction_speed": 3.3,
+			"track_quality": 100.0,
+			"checksums": {
+				"test_crc": "7F60A48A",
+				"copy_crc": "7F60A48A"
+			},
+			"accurate_rip_confidence": 3,
+			"copy": "OK"
+		},
+		{
+			"filename": "05 - Electric Worm.wav",
+			"pregap_length": "0:00:10.64",
+			"peak_level": 99.8,
+			"extraction_speed": 2.7,
+			"track_quality": 99.9,
+			"checksums": {
+				"test_crc": "38D5483E",
+				"copy_crc": "38D5483E"
+			},
+			"accurate_rip_confidence": 3,
+			"copy": "OK"
+		},
+		{
+			"filename": "06 - Freaky Hijiki.wav",
+			"peak_level": 97.8,
+			"extraction_speed": 3.5,
+			"track_quality": 100.0,
+			"checksums": {
+				"test_crc": "82B1E49E",
+				"copy_crc": "82B1E49E"
+			},
+			"accurate_rip_confidence": 3,
+			"copy": "OK"
+		},
+		{
+			"filename": "07 - Off The Grid.wav",
+			"pregap_length": "0:00:08.97",
+			"peak_level": 99.8,
+			"extraction_speed": 3.8,
+			"track_quality": 100.0,
+			"checksums": {
+				"test_crc": "A3D113FE",
+				"copy_crc": "A3D113FE"
+			},
+			"accurate_rip_confidence": 3,
+			"copy": "OK"
+		},
+		{
+			"filename": "08 - The Rat Cage.wav",
+			"peak_level": 99.5,
+			"extraction_speed": 3.9,
+			"track_quality": 100.0,
+			"checksums": {
+				"test_crc": "2854C0ED",
+				"copy_crc": "2854C0ED"
+			},
+			"accurate_rip_confidence": 3,
+			"copy": "OK"
+		},
+		{
+			"filename": "09 - The Melee.wav",
+			"peak_level": 98.1,
+			"extraction_speed": 3.9,
+			"track_quality": 100.0,
+			"checksums": {
+				"test_crc": "89DCC4CD",
+				"copy_crc": "89DCC4CD"
+			},
+			"accurate_rip_confidence": 3,
+			"copy": "OK"
+		},
+		{
+			"filename": "10 - Dramastically Different.wav",
+			"peak_level": 98.1,
+			"extraction_speed": 4.3,
+			"track_quality": 100.0,
+			"checksums": {
+				"test_crc": "673EE937",
+				"copy_crc": "673EE937"
+			},
+			"accurate_rip_confidence": 3,
+			"copy": "OK"
+		},
+		{
+			"filename": "11 - The Cousin of Death.wav",
+			"peak_level": 98.3,
+			"extraction_speed": 4.1,
+			"track_quality": 100.0,
+			"checksums": {
+				"test_crc": "8F2095C2",
+				"copy_crc": "8F2095C2"
+			},
+			"accurate_rip_confidence": 3,
+			"copy": "OK"
+		},
+		{
+			"filename": "12 - The Kangaroo Rat.wav",
+			"peak_level": 98.3,
+			"extraction_speed": 4.2,
+			"track_quality": 100.0,
+			"checksums": {
+				"test_crc": "DB2A0D80",
+				"copy_crc": "DB2A0D80"
+			},
+			"accurate_rip_confidence": 3,
+			"copy": "OK"
+		},
+		{
+			"filename": "13 - The Mix Up.wav",
+			"pregap_length": "0:00:02.54",
+			"peak_level": 99.8,
+			"extraction_speed": 4.2,
+			"track_quality": 100.0,
+			"checksums": {
+				"test_crc": "80CD0885",
+				"copy_crc": "80CD0885"
+			},
+			"accurate_rip_confidence": 3,
+			"copy": "OK"
+		},
+		{
+			"filename": "14 - The Mix Up.wav",
+			"pregap_length": "0:00:04.21",
+			"peak_level": 99.8,
+			"extraction_speed": 4.0,
+			"track_quality": 100.0,
+			"checksums": {
+				"test_crc": "A751161B",
+				"copy_crc": "A751161B"
+			},
+			"accurate_rip_confidence": 3,
+			"copy": "OK"
+		}
+	]
+}
