@@ -7,13 +7,13 @@
 		"used_drive": "TSSTcorpDVD+-RW TS-U633F",
 		"checksum": "063F494868CFFFAF6D2A4A93E0E326D904B44F0C307320DD75209A4D53960D20",
 		"all_tracks_accurately_ripped": true,
-		"no_errors_occured": true
+		"no_errors_occurred": true
 	},
 	"options": {
 		"drive_options": {
 			"read_mode": "Secure",
 			"utilize_accurate_stream": true,
-			"defeat_audio_cache": false,
+			"defeat_audio_cache": true,
 			"make_use_of_c2_pointers": false
 		},
 		"read_options": {
@@ -25,7 +25,7 @@
 		},
 		"output_options": {
 			"used_output_format": "User Defined Encoder",
-			"selected_bitrate": "1024 kBit/s",
+			"selected_bitrate": 1024,
 			"quality": "High",
 			"add_id3_tag": "No",
 			"command_line_compressor": "C:\\Program Files\\Exact Audio Copy\\Flac\\flac.exe"
