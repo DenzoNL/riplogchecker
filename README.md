@@ -7,16 +7,9 @@ of concept, but the checks that have been implemented, have been imported
 poorly. When you find an issue, please report it here on GitHub so it can be fixed.
 
 ## TODO
-* Implement proper, reliable regexes. The current regexes simply do a hard
- check for a certain key value pair, they do not parse the actual values for a given key.
- 
-* As a result of the previously mentioned TODO, parse EAC logs into a JSON object
- so other software can easily parse it.
+* Implement scoring based on EAC-logs parsed into Json format
 
-* Per-track CRC mismatch detection. It currently just checks if there is any. It
-  doesn't list it per track.
-  
-* Implementation of additional checks such as test-and-copy, accurate rip scores.
+* Test Json Parser thoroughly and implement exceptions / checks for older logs.
 
 * Colored output in both CLI and HTML.
 
@@ -30,8 +23,15 @@ $ composer require denzo/riplogchecker
 
 ## Command line interface
 
-```
+Basic usage
+
+``` php
 $ php riplogchecker path/to/log/file.log
+```
+
+Output the score AND the resulting Json
+``` php
+$ php riplogchecker path/to/log/file.log --json
 ```
 
 ### In code
@@ -47,4 +47,7 @@ $logChecker = new RipLogChecker($logFile);
 
 /* Retrieve the log score */
 $score = $logChecker->getScore();
+
+/* Retrieve the Json */
+$logChecker->getScorer->getParser()->getJson();
 ```
