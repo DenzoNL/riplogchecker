@@ -2,7 +2,7 @@
 	"metadata": {
 		"software_version": "Exact Audio Copy V1.0 beta 3 from 29. August 2011",
 		"log_date": "27. July 2014, 12:00",
-		"used_drive": "TSSTcorpDVD+-RW TS-U633F",
+		"used_drive": "TSSTcorpDVD+-RW TS-U633F   Adapter: 1  ID: 0",
 		"checksum": "063F494868CFFFAF6D2A4A93E0E326D904B44F0C307320DD75209A4D53960D20",
 		"all_tracks_accurately_ripped": true,
 		"no_errors_occurred": true
@@ -27,14 +27,13 @@
 			"used_output_format": "User Defined Encoder",
 			"selected_bitrate": 1024,
 			"quality": "High",
-			"add_id3_tag": "No",
+			"add_id3_tag": false,
 			"command_line_compressor": "C:\\Program Files\\Exact Audio Copy\\Flac\\flac.exe"
 		}
 	},
 	"tracks": [
 		{
-			"filename": "01 - B For My Name.wav",
-			"pregap_length": "0:00:02.00",
+			"filename": "H:\\flac\\The Mix Up\\01 - B For My Name.wav",
 			"peak_level": 98.2,
 			"extraction_speed": 2.6,
 			"track_quality": 100.0,
@@ -46,7 +45,7 @@
 			"copy": "OK"
 		},
 		{
-			"filename": "02 - 14th St. Break.wav",
+			"filename": "H:\\flac\\The Mix Up\\02 - 14th St. Break.wav",
 			"peak_level": 94.1,
 			"extraction_speed": 2.8,
 			"track_quality": 100.0,
@@ -58,7 +57,7 @@
 			"copy": "OK"
 		},
 		{
-			"filename": "03 - Suco De Tangerina.wav",
+			"filename": "H:\\flac\\The Mix Up\\03 - Suco De Tangerina.wav",
 			"peak_level": 99.8,
 			"extraction_speed": 3.0,
 			"track_quality": 100.0,
@@ -70,7 +69,7 @@
 			"copy": "OK"
 		},
 		{
-			"filename": "04 - The Gala Event.wav",
+			"filename": "H:\\flac\\The Mix Up\\04 - The Gala Event.wav",
 			"peak_level": 99.0,
 			"extraction_speed": 3.3,
 			"track_quality": 100.0,
@@ -82,8 +81,7 @@
 			"copy": "OK"
 		},
 		{
-			"filename": "05 - Electric Worm.wav",
-			"pregap_length": "0:00:10.64",
+			"filename": "H:\\flac\\The Mix Up\\05 - Electric Worm.wav",
 			"peak_level": 99.8,
 			"extraction_speed": 2.7,
 			"track_quality": 99.9,
@@ -95,7 +93,7 @@
 			"copy": "OK"
 		},
 		{
-			"filename": "06 - Freaky Hijiki.wav",
+			"filename": "H:\\flac\\The Mix Up\\06 - Freaky Hijiki.wav",
 			"peak_level": 97.8,
 			"extraction_speed": 3.5,
 			"track_quality": 100.0,
@@ -107,8 +105,7 @@
 			"copy": "OK"
 		},
 		{
-			"filename": "07 - Off The Grid.wav",
-			"pregap_length": "0:00:08.97",
+			"filename": "H:\\flac\\The Mix Up\\07 - Off The Grid.wav",
 			"peak_level": 99.8,
 			"extraction_speed": 3.8,
 			"track_quality": 100.0,
@@ -120,7 +117,7 @@
 			"copy": "OK"
 		},
 		{
-			"filename": "08 - The Rat Cage.wav",
+			"filename": "H:\\flac\\The Mix Up\\08 - The Rat Cage.wav",
 			"peak_level": 99.5,
 			"extraction_speed": 3.9,
 			"track_quality": 100.0,
@@ -132,7 +129,7 @@
 			"copy": "OK"
 		},
 		{
-			"filename": "09 - The Melee.wav",
+			"filename": "H:\\flac\\The Mix Up\\09 - The Melee.wav",
 			"peak_level": 98.1,
 			"extraction_speed": 3.9,
 			"track_quality": 100.0,
@@ -144,7 +141,7 @@
 			"copy": "OK"
 		},
 		{
-			"filename": "10 - Dramastically Different.wav",
+			"filename": "H:\\flac\\The Mix Up\\10 - Dramastically Different.wav",
 			"peak_level": 98.1,
 			"extraction_speed": 4.3,
 			"track_quality": 100.0,
@@ -156,7 +153,7 @@
 			"copy": "OK"
 		},
 		{
-			"filename": "11 - The Cousin of Death.wav",
+			"filename": "H:\\flac\\The Mix Up\\11 - The Cousin of Death.wav",
 			"peak_level": 98.3,
 			"extraction_speed": 4.1,
 			"track_quality": 100.0,
@@ -168,7 +165,7 @@
 			"copy": "OK"
 		},
 		{
-			"filename": "12 - The Kangaroo Rat.wav",
+			"filename": "H:\\flac\\The Mix Up\\12 - The Kangaroo Rat.wav",
 			"peak_level": 98.3,
 			"extraction_speed": 4.2,
 			"track_quality": 100.0,
@@ -180,8 +177,7 @@
 			"copy": "OK"
 		},
 		{
-			"filename": "13 - The Mix Up.wav",
-			"pregap_length": "0:00:02.54",
+			"filename": "H:\\flac\\The Mix Up\\13 - The Mix Up.wav",
 			"peak_level": 99.8,
 			"extraction_speed": 4.2,
 			"track_quality": 100.0,
@@ -193,8 +189,7 @@
 			"copy": "OK"
 		},
 		{
-			"filename": "14 - The Mix Up.wav",
-			"pregap_length": "0:00:04.21",
+			"filename": "H:\\flac\\The Mix Up\\14 - Fibonacci Sequence.wav",
 			"peak_level": 99.8,
 			"extraction_speed": 4.0,
 			"track_quality": 100.0,

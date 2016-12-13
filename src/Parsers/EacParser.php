@@ -18,8 +18,9 @@ class EacParser extends BaseParser
             'metadata' => [
                 'software_version' => $this->getSoftwareVersion(),
                 'log_date' => $this->getLogDate(),
-                'album_artist' => $this->getAlbumArtist(),
-                'album_name' => $this->getAlbumName(),
+                /* TODO: Implement these functions */
+                //'album_artist' => $this->getAlbumArtist(),
+                //'album_name' => $this->getAlbumName(),
                 'used_drive' => $this->getDriveName(),
                 'checksum' => $this->getChecksum(),
                 'all_tracks_accurately_ripped' => $this->getAllTracksAccuratelyRipped(),
@@ -419,8 +420,10 @@ class EacParser extends BaseParser
                 'peak_level' => $this->getTrackPeakLevel($pos),
                 'extraction_speed' => $this->getTrackExtractionSpeed($pos),
                 'track_quality' => $this->getTrackQuality($pos),
-                'test_crc' => $this->getTrackTestCrc($pos),
-                'copy_crc' => $this->getTrackCopyCrc($pos),
+                'checksums' => [
+                    'test_crc' => $this->getTrackTestCrc($pos),
+                    'copy_crc' => $this->getTrackCopyCrc($pos)
+                ],
                 'accurate_rip_confidence' => $this->getTrackAccurateRipConfidence($pos),
                 'copy' => $this->getTrackCopyResult($pos)
             ];
@@ -534,10 +537,9 @@ class EacParser extends BaseParser
         $pos = strpos($this->log, $option, $pos) + strlen($option);
         $text = substr($this->log, $pos, 1);
 
-        if($text) {
+        if ($text) {
             return filter_var($text, FILTER_SANITIZE_NUMBER_INT);
-        }
-        else {
+        } else {
             return 'not found';
         }
 
@@ -554,11 +556,9 @@ class EacParser extends BaseParser
         $option = 'Copy OK';
         $result = strpos($this->log, $option, $pos);
 
-        if(!$result)
-        {
+        if (!$result) {
             return "Not found";
-        }
-        else {
+        } else {
             return "OK";
         }
     }
