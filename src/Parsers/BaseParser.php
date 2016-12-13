@@ -92,6 +92,19 @@ abstract class BaseParser
     abstract protected function getChecksum(): string;
 
     /**
+     * Find whether the log contains the text 'All tracks accurately ripped'.
+     *
+     * @return bool
+     */
+    abstract protected function getAllTracksAccuratelyRipped(): bool;
+
+    /**
+     * Find out whether the log contains the text 'No errors occurred'.
+     *
+     * @return bool
+     */
+    abstract protected function getNoErrorsOccurred(): bool;
+    /**
      * Find the read mode that was used.
      *
      * @return string
@@ -143,6 +156,13 @@ abstract class BaseParser
     abstract protected function getFillUpOffsetSamples(): bool;
 
     /**
+     * Find out whether leading and trailing silent blocks
+     * are deleted.
+     *
+     * @return bool
+     */
+    abstract protected function getDeleteSilentBlocks(): bool;
+    /**
      * Find out whether null samples are used in CRC calculations.
      *
      * @return bool
@@ -156,6 +176,12 @@ abstract class BaseParser
      */
     abstract protected function getUsedInterface(): string;
 
+    /**
+     * Get the gap handling mode that was used.
+     *
+     * @return string
+     */
+    abstract protected function getGapHandling(): string;
     /**
      * Get the output format that was used.
      *
@@ -271,7 +297,7 @@ abstract class BaseParser
      *
      * @return int
      */
-    abstract protected function getAccurateRipConfidence(string $track): int;
+    abstract protected function getTrackAccurateRipConfidence(string $track): int;
 
     /**
      * Get the copy result for a given track.
@@ -280,5 +306,5 @@ abstract class BaseParser
      *
      * @return string
      */
-    abstract protected function getCopyResult(string $track): string;
+    abstract protected function getTrackCopyResult(string $track): string;
 }

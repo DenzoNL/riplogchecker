@@ -20,8 +20,10 @@
 			"read_offset_correction": 6,
 			"overread_into_leadin_and_leadout": false,
 			"fill_up_missing_offset_samples_with_silence": true,
+			"delete_leading_trailing_silent_blocks": false,
 			"null_samples_used_in_crc_calculations": true,	
-			"used_interface": "Installed external ASPI interface"	
+			"used_interface": "Installed external ASPI interface",
+			"gap_handling": "Appended to previous track"
 		},
 		"output_options": {
 			"used_output_format": "User Defined Encoder",

@@ -17,11 +17,46 @@ class EacParser extends BaseParser
         $this->json = json_encode([
             'metadata' => [
                 'software_version' => $this->getSoftwareVersion(),
-                'log_date' => $this->getLogDate()
+                'log_date' => $this->getLogDate(),
+                'album_artist' => $this->getAlbumArtist(),
+                'album_name' => $this->getAlbumName(),
+                'used_drive' => $this->getDriveName(),
+                'checksum' => $this->getChecksum(),
+                'all_tracks_accurately_ripped' => $this->getAllTracksAccuratelyRipped(),
+                'no_errors_occurred' => $this->getNoErrorsOccurred()
+            ],
+            'options' => [
+                'drive_options' => [
+                    'read_mode' => $this->getReadMode(),
+                    'utilize_accurate_stream' => $this->getAccurateStream(),
+                    'defeat_audio_cache' => $this->getDefeatAudioCache(),
+                    'make_use_of_c2_pointers' => $this->getC2Pointers()
+                ],
+                'read_options' => [
+                    'read_offset_correction' => $this->getReadOffsetCorrection(),
+                    'overread_into_leadin_and_leadout' => $this->getOverreadIntoLeadinLeadOut(),
+                    'fill_up_missing_offset_samples_with_silence' => $this->getFillUpOffsetSamples(),
+                    'delete_leading_trailing_silent_blocks' => $this->getDeleteSilentBlocks(),
+                    'null_samples_used_in_crc_calculations' => $this->getNullSamplesUsed(),
+                    'used_interface' => $this->getUsedInterface(),
+                    'gap_handling' => $this->getGapHandling()
+                ],
+                'output_options' => [
+                    'used_output_format' => $this->getUsedOutputFormat(),
+                    'selected_bitrate' => $this->getSelectedBitrate(),
+                    'quality' => $this->getOutputQuality(),
+                    'add_id3_tag' => $this->getID3TagsAdded(),
+                    'command_line_compressor' => $this->getCompressorExecutable()
+                ]
             ]
         ], JSON_PRETTY_PRINT);
 
-        return true;
+        if ($this->json) {
+            return true;
+        } else {
+            /* $this->json is null, something went wrong*/
+            return false;
+        }
     }
 
     /**
@@ -35,11 +70,9 @@ class EacParser extends BaseParser
         $pos = strpos($this->log, 'Exact Audio Copy V');
 
         /* If we can't find it, return an error */
-        if($pos === FALSE)
-        {
+        if ($pos === FALSE) {
             return 'Software version could not be determined.';
-        }
-        /* Return the full line of text starting at the position until end of line */
+        } /* Return the full line of text starting at the position until end of line */
         else {
             return $this->readFromPosToEOL($pos);
         }
@@ -59,11 +92,9 @@ class EacParser extends BaseParser
         $pos = strpos($this->log, $needle) + strlen($needle);
 
         /* If nothing could be found, return this*/
-        if($pos === FALSE)
-        {
+        if ($pos === FALSE) {
             return 'Log date could not be determined.';
-        }
-        else {
+        } else {
             /* If we found the timestamp, read from the start of the timestamp until EOL */
             return $this->readFromPosToEOL($pos);
         }
@@ -77,6 +108,7 @@ class EacParser extends BaseParser
     protected function getAlbumArtist(): string
     {
         // TODO: Implement getAlbumArtist() method.
+        return "Could not find album artist";
     }
 
     /**
@@ -87,6 +119,7 @@ class EacParser extends BaseParser
     protected function getAlbumName(): string
     {
         // TODO: Implement getAlbumName() method.
+        return "Could not find album name";
     }
 
     /**
@@ -96,7 +129,19 @@ class EacParser extends BaseParser
      */
     protected function getDriveName(): string
     {
-        // TODO: Implement getDriveName() method.
+        /* Determine the string that we're looking for */
+        $needle = 'Used drive';
+
+        /* Determine the start position of the used drive text */
+        $pos = strpos($this->log, $needle) + strlen($needle);
+
+        if ($pos === FALSE) {
+            return 'Used drive could not be determined.';
+        } else {
+            $text = $this->readFromPosToEOL($pos);
+
+            return $this->getTextAfterColon($text);
+        }
     }
 
     /**
@@ -106,7 +151,50 @@ class EacParser extends BaseParser
      */
     protected function getChecksum(): string
     {
-        // TODO: Implement getChecksum() method.
+        /* Find if there is a checksum */
+        $needle = "Log checksum";
+
+        /* Determine the starting position of the checksum */
+        $pos = strpos($this->log, $needle) + strlen($needle);
+
+        if ($pos === FALSE) {
+            return "Could not find log checksum!";
+        } /* Return the 64-character checksum */
+        else {
+            return substr($this->log, $pos + 1, 64);
+        }
+    }
+
+    /**
+     * Find whether the log contains the text 'All tracks accurately ripped'.
+     *
+     * @return bool
+     */
+    protected function getAllTracksAccuratelyRipped(): bool
+    {
+        $needle = 'All tracks accurately ripped';
+
+        if (strpos($this->log, $needle) === FALSE) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Find out whether the log contains the text 'No errors occurred'.
+     *
+     * @return bool
+     */
+    protected function getNoErrorsOccurred(): bool
+    {
+        $needle = 'No errors occurred';
+
+        if (strpos($this->log, $needle) === FALSE) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -116,7 +204,9 @@ class EacParser extends BaseParser
      */
     protected function getReadMode(): string
     {
-        // TODO: Implement getReadMode() method.
+        /* Find if there is a read mode */
+        $option = "Read mode";
+        return $this->getOptionString($option);
     }
 
     /**
@@ -126,7 +216,8 @@ class EacParser extends BaseParser
      */
     protected function getAccurateStream(): bool
     {
-        // TODO: Implement getAccurateStream() method.
+        $option = "Utilize accurate stream";
+        return $this->getOptionBoolean($option);
     }
 
     /**
@@ -136,7 +227,8 @@ class EacParser extends BaseParser
      */
     protected function getDefeatAudioCache(): bool
     {
-        // TODO: Implement getDefeatAudioCache() method.
+        $option = "Defeat audio cache";
+        return $this->getOptionBoolean($option);
     }
 
     /**
@@ -146,7 +238,8 @@ class EacParser extends BaseParser
      */
     protected function getC2Pointers(): bool
     {
-        // TODO: Implement getC2Pointers() method.
+        $option = "Make use of C2 pointers";
+        return $this->getOptionBoolean($option);
     }
 
     /**
@@ -156,7 +249,8 @@ class EacParser extends BaseParser
      */
     protected function getReadOffsetCorrection(): int
     {
-        // TODO: Implement getReadOffsetCorrection() method.
+        $option = "Read offset correction";
+        return $this->getOptionString($option);
     }
 
     /**
@@ -167,7 +261,8 @@ class EacParser extends BaseParser
      */
     protected function getOverreadIntoLeadinLeadOut(): bool
     {
-        // TODO: Implement getOverreadIntoLeadinLeadOut() method.
+        $option = "Overread into Lead-In and Lead-Out";
+        return $this->getOptionBoolean($option);
     }
 
     /**
@@ -178,7 +273,20 @@ class EacParser extends BaseParser
      */
     protected function getFillUpOffsetSamples(): bool
     {
-        // TODO: Implement getFillUpOffsetSamples() method.
+        $option = "Fill up missing offset samples with silence";
+        return $this->getOptionBoolean($option);
+    }
+
+    /**
+     * Find out whether leading and trailing silent blocks
+     * are deleted.
+     *
+     * @return bool
+     */
+    protected function getDeleteSilentBlocks(): bool
+    {
+        $option = "Delete leading and trailing silent blocks";
+        return $this->getOptionBoolean($option);
     }
 
     /**
@@ -188,7 +296,8 @@ class EacParser extends BaseParser
      */
     protected function getNullSamplesUsed(): bool
     {
-        // TODO: Implement getNullSamplesUsed() method.
+        $option = "Null samples used in CRC calculations";
+        return $this->getOptionBoolean($option);
     }
 
     /**
@@ -198,7 +307,19 @@ class EacParser extends BaseParser
      */
     protected function getUsedInterface(): string
     {
-        // TODO: Implement getUsedInterface() method.
+        $option = "Used interface";
+        return $this->getOptionString($option);
+    }
+
+    /**
+     * Get the gap handling mode that was used.
+     *
+     * @return string
+     */
+    protected function getGapHandling(): string
+    {
+        $option = "Gap handling";
+        return $this->getOptionString($option);
     }
 
     /**
@@ -208,7 +329,8 @@ class EacParser extends BaseParser
      */
     protected function getUsedOutputFormat(): string
     {
-        // TODO: Implement getUsedOutputFormat() method.
+        $option = "Used output format";
+        return $this->getOptionString($option);
     }
 
     /**
@@ -218,7 +340,11 @@ class EacParser extends BaseParser
      */
     protected function getSelectedBitrate(): int
     {
-        // TODO: Implement getSelectedBitrate() method.
+        $option = "Selected bitrate";
+        $text = $this->getOptionString($option);
+
+        /* Convert 'xxxx kBit/s to int */
+        return filter_var($text, FILTER_SANITIZE_NUMBER_INT);
     }
 
     /**
@@ -228,7 +354,8 @@ class EacParser extends BaseParser
      */
     protected function getOutputQuality(): string
     {
-        // TODO: Implement getOutputQuality() method.
+        $option = "Quality";
+        return $this->getOptionString($option);
     }
 
     /**
@@ -238,7 +365,8 @@ class EacParser extends BaseParser
      */
     protected function getID3TagsAdded(): bool
     {
-        // TODO: Implement getID3TagsAdded() method.
+        $option = "Add ID3 tag";
+        return $this->getOptionBoolean($option);
     }
 
     /**
@@ -249,7 +377,8 @@ class EacParser extends BaseParser
      */
     protected function getCompressorExecutable(): string
     {
-        // TODO: Implement getCompressorExecutable() method.
+        $option = "Command line compressor";
+        return $this->getOptionString($option);
     }
 
     /**
@@ -355,7 +484,7 @@ class EacParser extends BaseParser
      *
      * @return int
      */
-    protected function getAccurateRipConfidence(string $track): int
+    protected function getTrackAccurateRipConfidence(string $track): int
     {
         // TODO: Implement getAccurateRipConfidence() method.
     }
@@ -367,7 +496,7 @@ class EacParser extends BaseParser
      *
      * @return string
      */
-    protected function getCopyResult(string $track): string
+    protected function getTrackCopyResult(string $track): string
     {
         // TODO: Implement getCopyResult() method.
     }
@@ -381,5 +510,51 @@ class EacParser extends BaseParser
     protected function readFromPosToEOL($pos): string
     {
         return substr($this->log, $pos, strpos($this->log, PHP_EOL, $pos) - $pos);
+    }
+
+    /**
+     * Get the text after a colon
+     *
+     * @param $text
+     * @return string
+     */
+    protected function getTextAfterColon($text): string
+    {
+        return substr($text, strpos($text, ':') + 2);
+    }
+
+    /**
+     * Get the result for a given option
+     *
+     * @param $option
+     * @return string
+     */
+    protected function getOptionString($option): string
+    {
+        /* Find the position at which we should start reading for the result */
+        $pos = strpos($this->log, $option) + strlen($option);
+
+        if ($pos === FALSE) {
+            return $option . " not found";
+        } /* Return the text after the colon on the line given */
+        else {
+            $text = $this->readFromPosToEOL($pos);
+            return $this->getTextAfterColon($text);
+        }
+    }
+
+    /**
+     * Return a boolean for a text boolean.
+     *
+     * @param $option
+     * @return bool
+     */
+    protected function getOptionBoolean($option): bool
+    {
+        if ($this->getOptionString($option) == "Yes") {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
