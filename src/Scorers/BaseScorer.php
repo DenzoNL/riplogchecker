@@ -2,6 +2,8 @@
 
 namespace RipLogChecker\Scorers;
 
+use RipLogChecker\Parsers\BaseParser;
+
 abstract class BaseScorer
 {
     /**
@@ -67,6 +69,13 @@ abstract class BaseScorer
     protected $log;
 
     /**
+     * The Parser object
+     *
+     * @var BaseParser;
+     */
+    protected $parser;
+
+    /**
      * Parses the log file, and returns false if it
      * fails to parse the log file.
      *
@@ -100,6 +109,14 @@ abstract class BaseScorer
     public function getErrors(): array
     {
         return $this->errors;
+    }
+
+    /**
+     * @return BaseParser
+     */
+    public function getParser(): BaseParser
+    {
+        return $this->parser;
     }
 
     /**

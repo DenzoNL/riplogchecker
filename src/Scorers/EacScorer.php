@@ -2,6 +2,8 @@
 
 namespace RipLogChecker\Scorers;
 
+use RipLogChecker\Parsers\EacParser;
+
 class EacScorer extends BaseScorer
 {
     /**
@@ -15,6 +17,7 @@ class EacScorer extends BaseScorer
     {
         /* Load the log file */
         $this->log = $log;
+        $this->parser = new EacParser($log);
         $this->errors = [];
         /* Initialize deducted points */
         $this->setDeductedPoints(0);

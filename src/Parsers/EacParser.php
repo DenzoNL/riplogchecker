@@ -48,8 +48,9 @@ class EacParser extends BaseParser
                     'add_id3_tag' => $this->getID3TagsAdded(),
                     'command_line_compressor' => $this->getCompressorExecutable()
                 ]
-            ]
-        ], JSON_PRETTY_PRINT);
+            ],
+            'tracks' => $this->getTrackData()
+        ], JSON_PRETTY_PRINT | JSON_PRESERVE_ZERO_FRACTION);
 
         if ($this->json) {
             return true;
@@ -382,123 +383,184 @@ class EacParser extends BaseParser
     }
 
     /**
-     * Find track data by track number.
+     * Get the track data
      *
-     * @param int $number
      *
-     * @return string
+     * @return array
      */
-    protected function getTrackData(int $number): string
+    protected function getTrackData(): array
     {
-        // TODO: Implement getTrackData() method.
+        /* Initialize variables required for while loop */
+        $trackData = array();
+        $trackFound = true;
+        $trackNumber = 1;
+
+        /* Loop until we have the data for every track */
+        while ($trackFound) {
+
+            /* Dirty hack for inconsistent spacing */
+            if ($trackNumber < 10) {
+                $pos = strpos($this->log, 'Track  ' . $trackNumber);
+            } else {
+                $pos = strpos($this->log, 'Track ' . $trackNumber);
+            }
+
+            /* If we didn't find a track, break the loop */
+            if ($pos === FALSE) {
+                $trackFound = false;
+                break;
+            }
+
+            /* Create the track array */
+            $track = [
+                'filename' => $this->getTrackFileName($pos),
+                /* Does not work correctly, yet */
+                //'pregap_length' => $this->getTrackPregapLength($pos),
+                'peak_level' => $this->getTrackPeakLevel($pos),
+                'extraction_speed' => $this->getTrackExtractionSpeed($pos),
+                'track_quality' => $this->getTrackQuality($pos),
+                'test_crc' => $this->getTrackTestCrc($pos),
+                'copy_crc' => $this->getTrackCopyCrc($pos),
+                'accurate_rip_confidence' => $this->getTrackAccurateRipConfidence($pos),
+                'copy' => $this->getTrackCopyResult($pos)
+            ];
+
+            $trackNumber++;
+
+            array_push($trackData, $track);
+        }
+
+        return $trackData;
     }
 
     /**
-     * Get the filename of a given track.
+     * Get the filename for a track starting at a given position
      *
-     * @param string $track
-     *
+     * @param int $pos
      * @return string
      */
-    protected function getTrackFileName(string $track): string
+    protected function getTrackFileName(int $pos): string
     {
-        // TODO: Implement getTrackFileName() method.
+        $option = 'Filename ';
+        // TODO: Remove escaped slashes
+        return $this->getTrackOption($pos, $option);
     }
 
     /**
      * Get the pregap length for a given track.
      *
-     * @param string $track
-     *
-     * @return string
+     * @param int|string $pos
+     * @return mixed
      */
-    protected function getTrackPregapLength(string $track): string
+    protected function getTrackPregapLength(int $pos): string
     {
-        // TODO: Implement getTrackPregapLength() method.
+
+        $option = 'Pre-gap length  ';
+        return $this->getTrackOption($pos, $option);
     }
 
     /**
      * Gets the peak level for a given track.
      *
-     * @param string $track
-     *
+     * @param int $pos
      * @return float
      */
-    protected function getTrackPeakLevel(string $track): float
+    protected function getTrackPeakLevel(int $pos): float
     {
-        // TODO: Implement getTrackPeakLevel() method.
+        $option = 'Peak level ';
+        $text = $this->getTrackOption($pos, $option);
+        return filter_var($text, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     }
 
     /**
      * Gets the extraction speed for a given track.
      *
-     * @param string $track
-     *
+     * @param int $pos
      * @return float
      */
-    protected function getTrackExtractionSpeed(string $track): float
+    protected function getTrackExtractionSpeed(int $pos): float
     {
-        // TODO: Implement getTrackExtractionSpeed() method.
+        $option = 'Extraction speed ';
+        $text = $this->getTrackOption($pos, $option);
+        return filter_var($text, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     }
 
     /**
      * Gets the track quality for a given track.
      *
-     * @param string $track
-     *
+     * @param int $pos
      * @return float
      */
-    protected function getTrackQuality(string $track): float
+    protected function getTrackQuality(int $pos): float
     {
-        // TODO: Implement getTrackQuality() method.
+        $option = 'Track quality ';
+        $text = $this->getTrackOption($pos, $option);
+        return filter_var($text, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     }
 
     /**
      * Gets the test CRC for a given track.
      *
-     * @param string $track
-     *
+     * @param int $pos
      * @return string
      */
-    protected function getTrackTestCrc(string $track): string
+    protected function getTrackTestCrc(int $pos): string
     {
-        // TODO: Implement getTrackTestCrc() method.
+        $option = 'Test CRC ';
+        return $this->getTrackOption($pos, $option);
     }
 
     /**
      * Gets the copy CRC for a given track.
      *
-     * @param string $track
-     *
+     * @param int $pos
      * @return string
      */
-    protected function getTrackCopyCrc(string $track): string
+    protected function getTrackCopyCrc(int $pos): string
     {
-        // TODO: Implement getTrackCopyCrc() method.
+        $option = 'Copy CRC ';
+        return $this->getTrackOption($pos, $option);
     }
 
     /**
      * Gets the AccurateRip confidence level for a given track.
      *
-     * @param string $track
-     *
+     * @param int $pos
      * @return int
      */
-    protected function getTrackAccurateRipConfidence(string $track): int
+    protected function getTrackAccurateRipConfidence(int $pos): int
     {
-        // TODO: Implement getAccurateRipConfidence() method.
+        $option = 'confidence ';
+        $pos = strpos($this->log, $option, $pos) + strlen($option);
+        $text = substr($this->log, $pos, 1);
+
+        if($text) {
+            return filter_var($text, FILTER_SANITIZE_NUMBER_INT);
+        }
+        else {
+            return 'not found';
+        }
+
     }
 
     /**
      * Get the copy result for a given track.
      *
-     * @param string $track
-     *
+     * @param int $pos
      * @return string
      */
-    protected function getTrackCopyResult(string $track): string
+    protected function getTrackCopyResult(int $pos): string
     {
-        // TODO: Implement getCopyResult() method.
+        $option = 'Copy OK';
+        $result = strpos($this->log, $option, $pos);
+
+        if(!$result)
+        {
+            return "Not found";
+        }
+        else {
+            return "OK";
+        }
     }
 
     /**
@@ -556,5 +618,16 @@ class EacParser extends BaseParser
         } else {
             return false;
         }
+    }
+
+    /**
+     * @param int $pos
+     * @param $option
+     * @return string
+     */
+    protected function getTrackOption(int $pos, $option): string
+    {
+        $pos = strpos($this->log, $option, $pos) + strlen($option);
+        return $this->readFromPosToEOL($pos);
     }
 }
