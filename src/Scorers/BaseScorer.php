@@ -69,7 +69,7 @@ abstract class BaseScorer
     protected $log;
 
     /**
-     * The Parser object
+     * The Parser object.
      *
      * @var BaseParser;
      */
