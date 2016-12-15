@@ -600,7 +600,7 @@ class EacParser extends BaseParser
      */
     protected function readFromPosToEOL($pos): string
     {
-        return substr($this->log, $pos, strpos($this->log, PHP_EOL, $pos) - $pos);
+        return substr($this->log, $pos, strpos($this->log, "\n", $pos) - $pos);
     }
 
     /**
