@@ -1,21 +1,67 @@
+#!/usr/bin/env php
 <?php
 
-namespace Tests;
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader
+| for our application. We just need to utilize it! We'll require it
+| into the script here so that we do not have to worry about the
+| loading of any our classes "manually". Feels great to relax.
+|
+*/
+require __DIR__ . '/vendor/autoload.php';
 
-use PHPUnit\Framework\TestCase;
-use RipLogChecker\RipLogChecker;
 
-class PerfectScoreLogTest extends TestCase
-{
-    public function testLogHasPerfectScore()
-    {
-        /* Load log file */
-        $testLog = file_get_contents('tests/logs/perfect_log_test.log');
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Process the arguments and output the result!
+|
+*/
 
-        /* Construct RipLogChecker object*/
-        $log_checker = new RipLogChecker($testLog);
+$output = new Symfony\Component\Console\Output\ConsoleOutput();
 
-        /* Assert that the log score equals a perfect 100 score*/
-        $this->assertEquals(100, $log_checker->getScore());
+$logFile = file_get_contents($argv[1]);
+$logChecker = new \RipLogChecker\RipLogChecker($logFile);
+$errors = $logChecker->getScorer()->getErrors();
+
+$output->writeln('Score: ' . $logChecker->getScore());
+
+if ($errors != null) {
+
+    /* Initialize errorMessages array */
+    $errorMessages = array();
+    $numErrors = 0;
+
+    /* Loop through the errors, if they're set to true, push the error message to the array*/
+    for ($i = 0; $i < count($errors); $i++) {
+        if ($errors[$i] == true) {
+            array_push($errorMessages, \RipLogChecker\Scorers\EacScorer::$errorMessages[$i]);
+            $numErrors++;
+        }
+    }
+
+    if ($numErrors == 0) {
+        $output->writeln('There were no errors reported.');
+    } elseif ($numErrors == 1) {
+        $output->writeln('There was ' . $numErrors . ' error reported.');
+    } else {
+        $output->writeln('There were ' . $numErrors . ' errors reported.');
+    }
+
+    foreach ($errorMessages as $errorMessage) {
+        $output->writeln($errorMessage);
+    }
+
+    /* When argument --json is given, print log as json */
+
+    if (isset($argv[2]) && $argv[2] == "--json") {
+        echo $logChecker->getScorer()->getParser()->getJson();
     }
 }
+
