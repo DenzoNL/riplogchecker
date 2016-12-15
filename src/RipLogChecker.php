@@ -43,6 +43,13 @@ class RipLogChecker
      */
     protected function setLog($log)
     {
+        /* Normalize the line endings */
+        /* Credits: https://www.darklaunch.com/2009/05/06/php-normalize-newlines-line-endings-crlf-cr-lf-unix-windows-mac */
+        $log = str_replace("\r\n", "\n", $log);
+        $log = str_replace("\r", "\n", $log);
+        // Don't allow out-of-control blank lines
+        $log = preg_replace("/\n{2,}/", "\n\n", $log);
+
         $this->log = $log;
     }
 
