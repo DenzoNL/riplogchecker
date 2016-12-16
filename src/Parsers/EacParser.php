@@ -14,7 +14,7 @@ class EacParser extends BaseParser
      */
     public function parse($log): bool
     {
-        $this->json = json_encode([
+        $this->data = [
             'metadata' => [
                 'software_version' => $this->getSoftwareVersion(),
                 'log_date'         => $this->getLogDate(),
@@ -51,7 +51,9 @@ class EacParser extends BaseParser
                 ],
             ],
             'tracks' => $this->getTrackData(),
-        ], JSON_PRETTY_PRINT | JSON_PRESERVE_ZERO_FRACTION);
+        ];
+
+        $this->json = json_encode($this->data, JSON_PRETTY_PRINT | JSON_PRESERVE_ZERO_FRACTION);
 
         if ($this->json) {
             return true;

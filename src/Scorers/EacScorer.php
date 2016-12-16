@@ -83,10 +83,11 @@ class EacScorer extends BaseScorer
      */
     protected function checkReadMode(): bool
     {
-        $pattern = '/Read mode               : Secure/';
-        $result = preg_match($pattern, $this->log, $matches);
+        $assertion = 'Secure';
+        $result = $this->parser->data['options']['drive_options']['read_mode'];
+        $check = self::INSECURE_MODE_USED;
 
-        return $this->processResult($result, self::INSECURE_MODE_USED);
+        return $this->scoreResult($result, $assertion, $check);
     }
 
     /**
@@ -98,10 +99,11 @@ class EacScorer extends BaseScorer
      */
     protected function checkDefeatAudioCache(): bool
     {
-        $pattern = '/Defeat audio cache      : Yes/';
-        $result = preg_match($pattern, $this->log, $matches);
+        $assertion = true;
+        $result = $this->parser->data['options']['drive_options']['defeat_audio_cache'];
+        $check = self::DEFEAT_AUDIO_CACHE_DISABLED;
 
-        return $this->processResult($result, self::DEFEAT_AUDIO_CACHE_DISABLED);
+        return $this->scoreResult($result, $assertion, $check);
     }
 
     /**
@@ -113,10 +115,11 @@ class EacScorer extends BaseScorer
      */
     protected function checkC2PointersUsed(): bool
     {
-        $pattern = '/Make use of C2 pointers : No/';
-        $result = preg_match($pattern, $this->log, $matches);
+        $assertion = false;
+        $result = $this->parser->data['options']['drive_options']['make_use_of_c2_pointers'];
+        $check = self::C2_POINTERS_USED;
 
-        return $this->processResult($result, self::C2_POINTERS_USED);
+        return $this->scoreResult($result, $assertion, $check);
     }
 
     /**
@@ -128,10 +131,11 @@ class EacScorer extends BaseScorer
      */
     protected function checkFillUpOffsetSamples(): bool
     {
-        $pattern = '/Fill up missing offset samples with silence : Yes/';
-        $result = preg_match($pattern, $this->log, $matches);
+        $assertion = true;
+        $result = $this->parser->data['options']['read_options']['fill_up_missing_offset_samples_with_silence'];
+        $check = self::DOES_NOT_FILL_MISSING_SAMPLES;
 
-        return $this->processResult($result, self::DOES_NOT_FILL_MISSING_SAMPLES);
+        return $this->scoreResult($result, $assertion, $check);
     }
 
     /**
@@ -143,10 +147,11 @@ class EacScorer extends BaseScorer
      */
     protected function checkSilentBlockDeletion(): bool
     {
-        $pattern = '/Delete leading and trailing silent blocks   : No/';
-        $result = preg_match($pattern, $this->log, $matches);
+        $assertion = false;
+        $result = $this->parser->data['options']['read_options']['delete_leading_trailing_silent_blocks'];
+        $check = self::DELETES_SILENT_BLOCKS;
 
-        return $this->processResult($result, self::DELETES_SILENT_BLOCKS);
+        return $this->scoreResult($result, $assertion, $check);
     }
 
     /**
@@ -157,10 +162,11 @@ class EacScorer extends BaseScorer
      */
     protected function checkNullSamplesUsed(): bool
     {
-        $pattern = '/Null samples used in CRC calculations       : Yes/';
-        $result = preg_match($pattern, $this->log, $matches);
+        $assertion = true;
+        $result = $this->parser->data['options']['read_options']['null_samples_used_in_crc_calculations'];
+        $check = self::NULL_SAMPLES_NOT_USED;
 
-        return $this->processResult($result, self::NULL_SAMPLES_NOT_USED);
+        return $this->scoreResult($result, $assertion, $check);
     }
 
     /**
@@ -172,10 +178,11 @@ class EacScorer extends BaseScorer
      */
     protected function checkGapHandling(): bool
     {
-        $pattern = '/Gap handling                                : Appended to previous track/';
-        $result = preg_match($pattern, $this->log, $matches);
+        $assertion = "Appended to previous track";
+        $result = $this->parser->data['options']['read_options']['gap_handling'];
+        $check = self::GAP_HANDLING_NOT_DETECTED;
 
-        return $this->processResult($result, self::GAP_HANDLING_NOT_DETECTED);
+        return $this->scoreResult($result, $assertion, $check);
     }
 
     /**
@@ -186,10 +193,11 @@ class EacScorer extends BaseScorer
      */
     protected function checkID3TagsAdded(): bool
     {
-        $pattern = '/Add ID3 tag                     : No/';
-        $result = preg_match($pattern, $this->log, $matches);
+        $assertion = false;
+        $result = $this->parser->data['options']['output_options']['add_id3_tag'];
+        $check = self::ID3_TAGS_ADDED;
 
-        return $this->processResult($result, self::ID3_TAGS_ADDED);
+        return $this->scoreResult($result, $assertion, $check);
     }
 
     /**
@@ -200,24 +208,16 @@ class EacScorer extends BaseScorer
      */
     protected function checkCRCMismatch(): bool
     {
-        /* Find all matches of Test CRC and Copy CRC */
-        preg_match_all('/Test CRC/', $this->log, $test_matches, PREG_OFFSET_CAPTURE);
-        preg_match_all('/Copy CRC/', $this->log, $copy_matches, PREG_OFFSET_CAPTURE);
-
         /* Initialize arrays */
         $testCRCs = [];
         $copyCRCs = [];
 
         /* Save Test CRCs into array */
-        foreach ($test_matches[0] as $match) {
-            $crc = substr($this->log, $match[1] + 9, 8);
-            array_push($testCRCs, $crc);
-        }
-
-        /* Save Copy CRCs into array*/
-        foreach ($copy_matches[0] as $match) {
-            $crc = substr($this->log, $match[1] + 9, 8);
-            array_push($copyCRCs, $crc);
+        foreach ($this->parser->data['tracks'] as $match) {
+            $testCrc = $match['checksums']['test_crc'];
+            array_push($testCRCs, $testCrc);
+            $copyCrc = $match['checksums']['copy_crc'];
+            array_push($copyCRCs, $copyCrc);
         }
 
         /* Compare the arrays */
@@ -250,39 +250,41 @@ class EacScorer extends BaseScorer
      */
     protected function checkTestCopyUsed(): bool
     {
-        // TODO: Implement checkTestCopyUsed() method.
+        foreach ($this->parser->data['tracks'] as $track)
+        {
+            if ($track['copy'] != "OK") {
+                $this->errors[self::TEST_COPY_NOT_USED] = true;
+                $this->deductedPoints += parent::$pointDeductions[self::TEST_COPY_NOT_USED];
+            }
+        }
+
+        if(!isset($this->errors[self::TEST_COPY_NOT_USED]))
+        {
+            $this->errors[self::TEST_COPY_NOT_USED] = false;
+        }
+
         return true;
     }
 
     /**
-     * Processes the result of a preg_match().
+     * Check whether result equals the given assertion,
+     * and if not deduct points according to the given
+     * check.
      *
-     * @param $result - The preg_match() result
-     * @param $check - The point deduction check constant
-     *
+     * @param $result
+     * @param $assertion
+     * @param $check
      * @return bool
      */
-    protected function processResult($result, $check): bool
+    protected function scoreResult($result, $assertion, $check): bool
     {
-        /* If we found a match, return true */
-        if ($result === 1) {
-            /* Set INSECURE_MODE_USED to false in $this->errors */
+        if ($result == $assertion) {
             $this->errors[$check] = false;
-
-            /* Return true */
             return true;
-        } /* If we haven't found a match, deduct score and return true */
-        elseif ($result === 0) {
-            /* Add -2 points to $this->deductedPoints */
-            $this->deductedPoints += parent::$pointDeductions[$check];
-
-            /* Set INSECURE_MODE_USED to true in $this->errors */
+        } else {
             $this->errors[$check] = true;
-
+            $this->deductedPoints += self::$pointDeductions[$check];
             return true;
         }
-
-        /* Return false if preg_match fails */
-        return $result;
     }
 }

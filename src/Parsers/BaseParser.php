@@ -10,6 +10,14 @@ abstract class BaseParser
      * @var string;
      */
     protected $log;
+
+    /**
+     * The contents of the log converted to a PHP array
+     *
+     * @var array
+     */
+    public $data;
+
     /**
      * The contents of the log converted to JSON.
      *
