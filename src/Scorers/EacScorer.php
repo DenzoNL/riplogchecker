@@ -178,7 +178,7 @@ class EacScorer extends BaseScorer
      */
     protected function checkGapHandling(): bool
     {
-        $assertion = "Appended to previous track";
+        $assertion = 'Appended to previous track';
         $result = $this->parser->data['options']['read_options']['gap_handling'];
         $check = self::GAP_HANDLING_NOT_DETECTED;
 
@@ -250,16 +250,14 @@ class EacScorer extends BaseScorer
      */
     protected function checkTestCopyUsed(): bool
     {
-        foreach ($this->parser->data['tracks'] as $track)
-        {
-            if ($track['copy'] != "OK") {
+        foreach ($this->parser->data['tracks'] as $track) {
+            if ($track['copy'] != 'OK') {
                 $this->errors[self::TEST_COPY_NOT_USED] = true;
                 $this->deductedPoints += parent::$pointDeductions[self::TEST_COPY_NOT_USED];
             }
         }
 
-        if(!isset($this->errors[self::TEST_COPY_NOT_USED]))
-        {
+        if (!isset($this->errors[self::TEST_COPY_NOT_USED])) {
             $this->errors[self::TEST_COPY_NOT_USED] = false;
         }
 
@@ -274,16 +272,19 @@ class EacScorer extends BaseScorer
      * @param $result
      * @param $assertion
      * @param $check
+     *
      * @return bool
      */
     protected function scoreResult($result, $assertion, $check): bool
     {
         if ($result == $assertion) {
             $this->errors[$check] = false;
+
             return true;
         } else {
             $this->errors[$check] = true;
             $this->deductedPoints += self::$pointDeductions[$check];
+
             return true;
         }
     }

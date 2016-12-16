@@ -12,7 +12,7 @@ abstract class BaseParser
     protected $log;
 
     /**
-     * The contents of the log converted to a PHP array
+     * The contents of the log converted to a PHP array.
      *
      * @var array
      */
