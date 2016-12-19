@@ -119,4 +119,14 @@ class RipLogChecker
     {
         $this->scorer = $scorer;
     }
+
+    /**
+     * Returns the version string
+     *
+     * @return string
+     */
+    public static function getVersion()
+    {
+        return file_get_contents(__DIR__.'/../'.'VERSION');
+    }
 }

@@ -16,7 +16,9 @@ class JsonParserTest extends TestCase
         /* Construct RipLogChecker object*/
         $logChecker = new RipLogChecker($testLog);
 
-        $parsedJson = $logChecker->getScorer()->getParser()->getJson();
+        $data = $logChecker->getScorer()->getParser()->data;
+        unset($data['riplogchecker_version']);
+        $parsedJson = json_encode($data, JSON_PRETTY_PRINT | JSON_PRESERVE_ZERO_FRACTION);
 
         /* Assert that the test JSON equals the parsed JSON */
         $this->assertJsonStringEqualsJsonString($testJson, $parsedJson);

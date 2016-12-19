@@ -2,6 +2,8 @@
 
 namespace RipLogChecker\Parsers;
 
+use RipLogChecker\RipLogChecker;
+
 class EacParser extends BaseParser
 {
     /**
@@ -15,6 +17,7 @@ class EacParser extends BaseParser
     public function parse($log): bool
     {
         $this->data = [
+            'riplogchecker_version' => RipLogChecker::getVersion(),
             'metadata' => [
                 'software_version' => $this->getSoftwareVersion(),
                 'log_date'         => $this->getLogDate(),
