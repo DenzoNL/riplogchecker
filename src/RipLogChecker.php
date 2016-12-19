@@ -121,7 +121,7 @@ class RipLogChecker
     }
 
     /**
-     * Returns the version string
+     * Returns the version string.
      *
      * @return string
      */
