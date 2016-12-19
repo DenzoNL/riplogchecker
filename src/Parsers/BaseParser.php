@@ -144,9 +144,9 @@ abstract class BaseParser
     /**
      * Find the read offset correction.
      *
-     * @return int
+     * @return int|string
      */
-    abstract protected function getReadOffsetCorrection(): int;
+    abstract protected function getReadOffsetCorrection();
 
     /**
      * Find whether overread into lead-in and lead-out
@@ -203,9 +203,9 @@ abstract class BaseParser
     /**
      * Find the bitrate in kilobits.
      *
-     * @return int
+     * @return int|string
      */
-    abstract protected function getSelectedBitrate(): int;
+    abstract protected function getSelectedBitrate();
 
     /**
      * Find the output quality that was used.
@@ -269,9 +269,9 @@ abstract class BaseParser
      *
      * @param int $pos
      *
-     * @return float
+     * @return float|string
      */
-    abstract protected function getTrackExtractionSpeed(int $pos): float;
+    abstract protected function getTrackExtractionSpeed(int $pos);
 
     /**
      * Gets the track quality for a given track.

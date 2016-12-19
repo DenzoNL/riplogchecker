@@ -19,7 +19,7 @@ class CheckCRCMismatchTest extends TestCase
         /* Retrieve the errors array */
         $errors = $log_checker->getScorer()->getErrors();
 
-        /* Assert that we get the C2_POINTERS_USED error */
+        /* Assert that we get the CRC MISMATCH error */
         $this->assertEquals($errors[EacScorer::CRC_MISMATCH], true);
 
         /* Verify that the score is equals the score that a log with only this error would have */

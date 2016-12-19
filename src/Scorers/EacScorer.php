@@ -228,6 +228,7 @@ class EacScorer extends BaseScorer
         /* TODO: Save a list of mismatching CRCs for error reporting */
 
         if ($result == null) {
+            $this->errors[self::CRC_MISMATCH] = false;
             return true;
         } elseif ($result != null) {
             /* TODO: Report error for every CRC mismatch */

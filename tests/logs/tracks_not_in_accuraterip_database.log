@@ -1,0 +1,134 @@
+Exact Audio Copy V1.0 beta 3 from 29. August 2011
+
+EAC extraction logfile from 18. March 2016, 23:44
+
+AKB48 / 君はメロディー
+
+Used Drive  : TSSTcorpDVD+-RW TS-L633C   Adapter: 0  ID: 1 (not found in database)
+
+Read mode               : Secure
+Utilize accurate stream : Yes
+Defeat audio cache      : Yes
+Make use of C2 pointers : No
+
+Read offset correction                      : 6
+Overread into Lead-In and Lead-Out          : No
+Fill up missing offset samples with silence : Yes
+Delete leading and trailing silent blocks   : No
+Null samples used in CRC calculations       : Yes
+Used interface                              : Native Win32 interface for Win NT & 2000
+Gap handling                                : Appended to previous track
+
+Used output format              : User Defined Encoder
+Selected bitrate                : 128 kBit/s
+Quality                         : High
+Add ID3 tag                     : No
+Command line compressor         : C:\Program Files (x86)\FLAC\flac.exe
+Additional command line options : -8 -V -T "ARTIST=%artist%" -T "TITLE=%title%" -T "ALBUM=%albumtitle%" -T
+"DATE=%year%" -T "TRACKNUMBER=%tracknr%" -T "GENRE=%genre%" -T "PERFORMER=%albuminterpret%" -T "COMPOSER=%composer%" %haslyrics%--tag-from-file=LYRICS="%lyricsfile%"%haslyrics% -T "ALBUMARTIST=%albumartist%" -T "DISCNUMBER=%cdnumber%" -T "TOTALDISCS=%totalcds%" -T "TOTALTRACKS=%numtracks%" -T "COMMENT=%comment%" %source% -o %dest%
+
+
+TOC of the extracted CD
+
+     Track |   Start  |  Length  | Start sector | End sector
+    ---------------------------------------------------------
+        1  |  0:00.00 |  4:45.06 |         0    |    21380
+        2  |  4:45.06 |  5:12.64 |     21381    |    44844
+        3  |  9:57.70 |  4:59.25 |     44845    |    67294
+        4  | 14:57.20 |  4:44.67 |     67295    |    88661
+        5  | 19:42.12 |  5:12.64 |     88662    |   112125
+        6  | 24:55.01 |  4:57.49 |    112126    |   134449
+
+
+Track  1
+
+     Filename G:\AKB48 - 君はメロディー (Type A) (FLAC)\01 - AKB48 - 君はメロディー.wav
+
+     Pre-gap length  0:00:02.00
+
+     Peak level 100.0 %
+     Extraction speed 2.6 X
+     Track quality 100.0 %
+     Test CRC 0B01A9DC
+     Copy CRC 0B01A9DC
+     Track not present in AccurateRip database
+     Copy OK
+
+Track  2
+
+     Filename G:\AKB48 - 君はメロディー (Type A) (FLAC)\02 - AKB48 - LALALAメッセージ.wav
+
+     Pre-gap length  0:00:02.48
+
+     Peak level 100.0 %
+     Extraction speed 3.0 X
+     Track quality 100.0 %
+     Test CRC 9E8C4732
+     Copy CRC 9E8C4732
+     Track not present in AccurateRip database
+     Copy OK
+
+Track  3
+
+     Filename G:\AKB48 - 君はメロディー (Type A) (FLAC)\03 - SKE48 - Gonna Jump.wav
+
+     Pre-gap length  0:00:02.48
+
+     Peak level 99.0 %
+     Extraction speed 3.3 X
+     Track quality 100.0 %
+     Test CRC D78BCBD8
+     Copy CRC D78BCBD8
+     Track not present in AccurateRip database
+     Copy OK
+
+Track  4
+
+     Filename G:\AKB48 - 君はメロディー (Type A) (FLAC)\04 - AKB48 - 君はメロディー off vocal ver..wav
+
+     Pre-gap length  0:00:03.48
+
+     Peak level 100.0 %
+     Extraction speed 3.5 X
+     Track quality 100.0 %
+     Test CRC 79BC0608
+     Copy CRC 79BC0608
+     Track not present in AccurateRip database
+     Copy OK
+
+Track  5
+
+     Filename G:\AKB48 - 君はメロディー (Type A) (FLAC)\05 - AKB48 - LALALAメッセージ off vocal ver..wav
+
+     Pre-gap length  0:00:02.48
+
+     Peak level 100.0 %
+     Extraction speed 3.8 X
+     Track quality 100.0 %
+     Test CRC E2A79B2A
+     Copy CRC E2A79B2A
+     Track not present in AccurateRip database
+     Copy OK
+
+Track  6
+
+     Filename G:\AKB48 - 君はメロディー (Type A) (FLAC)\06 - SK48 - Gonna Jump off vocal ver..wav
+
+     Pre-gap length  0:00:02.48
+
+     Peak level 98.3 %
+     Extraction speed 4.0 X
+     Track quality 100.0 %
+     Test CRC 358FA78E
+     Copy CRC 358FA78E
+     Track not present in AccurateRip database
+     Copy OK
+
+
+None of the tracks are present in the AccurateRip database
+
+No errors occurred
+
+End of status report
+
+==== Log checksum 1940E0F44CBC2970B5399A89EE396C363437EA9B5A8FE71CC8F19B7A3ECFB080 ====

@@ -17,36 +17,36 @@ class EacParser extends BaseParser
         $this->data = [
             'metadata' => [
                 'software_version' => $this->getSoftwareVersion(),
-                'log_date'         => $this->getLogDate(),
+                'log_date' => $this->getLogDate(),
                 /* TODO: Implement these functions */
                 //'album_artist' => $this->getAlbumArtist(),
                 //'album_name' => $this->getAlbumName(),
-                'used_drive'                   => $this->getDriveName(),
-                'checksum'                     => $this->getChecksum(),
+                'used_drive' => $this->getDriveName(),
+                'checksum' => $this->getChecksum(),
                 'all_tracks_accurately_ripped' => $this->getAllTracksAccuratelyRipped(),
-                'no_errors_occurred'           => $this->getNoErrorsOccurred(),
+                'no_errors_occurred' => $this->getNoErrorsOccurred(),
             ],
             'options' => [
                 'drive_options' => [
-                    'read_mode'               => $this->getReadMode(),
+                    'read_mode' => $this->getReadMode(),
                     'utilize_accurate_stream' => $this->getAccurateStream(),
-                    'defeat_audio_cache'      => $this->getDefeatAudioCache(),
+                    'defeat_audio_cache' => $this->getDefeatAudioCache(),
                     'make_use_of_c2_pointers' => $this->getC2Pointers(),
                 ],
                 'read_options' => [
-                    'read_offset_correction'                      => $this->getReadOffsetCorrection(),
-                    'overread_into_leadin_and_leadout'            => $this->getOverreadIntoLeadinLeadOut(),
+                    'read_offset_correction' => $this->getReadOffsetCorrection(),
+                    'overread_into_leadin_and_leadout' => $this->getOverreadIntoLeadinLeadOut(),
                     'fill_up_missing_offset_samples_with_silence' => $this->getFillUpOffsetSamples(),
-                    'delete_leading_trailing_silent_blocks'       => $this->getDeleteSilentBlocks(),
-                    'null_samples_used_in_crc_calculations'       => $this->getNullSamplesUsed(),
-                    'used_interface'                              => $this->getUsedInterface(),
-                    'gap_handling'                                => $this->getGapHandling(),
+                    'delete_leading_trailing_silent_blocks' => $this->getDeleteSilentBlocks(),
+                    'null_samples_used_in_crc_calculations' => $this->getNullSamplesUsed(),
+                    'used_interface' => $this->getUsedInterface(),
+                    'gap_handling' => $this->getGapHandling(),
                 ],
                 'output_options' => [
-                    'used_output_format'      => $this->getUsedOutputFormat(),
-                    'selected_bitrate'        => $this->getSelectedBitrate(),
-                    'quality'                 => $this->getOutputQuality(),
-                    'add_id3_tag'             => $this->getID3TagsAdded(),
+                    'used_output_format' => $this->getUsedOutputFormat(),
+                    'selected_bitrate' => $this->getSelectedBitrate(),
+                    'quality' => $this->getOutputQuality(),
+                    'add_id3_tag' => $this->getID3TagsAdded(),
                     'command_line_compressor' => $this->getCompressorExecutable(),
                 ],
             ],
@@ -93,14 +93,14 @@ class EacParser extends BaseParser
         $needle = 'EAC extraction logfile from ';
 
         /* Determine the start position of the timestamp */
-        $pos = strpos($this->log, $needle) + strlen($needle);
+        $pos = strpos($this->log, $needle);
 
         /* If nothing could be found, return this*/
         if ($pos === false) {
             return 'Log date could not be determined.';
         } else {
             /* If we found the timestamp, read from the start of the timestamp until EOL */
-            return $this->readFromPosToEOL($pos);
+            return $this->readFromPosToEOL($pos + strlen($needle));
         }
     }
 
@@ -253,9 +253,9 @@ class EacParser extends BaseParser
     /**
      * Find the read offset correction.
      *
-     * @return int
+     * @return int|string
      */
-    protected function getReadOffsetCorrection(): int
+    protected function getReadOffsetCorrection()
     {
         $option = 'Read offset correction';
 
@@ -352,14 +352,15 @@ class EacParser extends BaseParser
     /**
      * Find the bitrate in kilobits.
      *
-     * @return int
+     * @return int|string
      */
-    protected function getSelectedBitrate(): int
+    protected function getSelectedBitrate()
     {
         $option = 'Selected bitrate';
         $text = $this->getOptionString($option);
 
         /* Convert 'xxxx kBit/s to int */
+        if($text == $option . ' not found') return $text;
         return filter_var($text, FILTER_SANITIZE_NUMBER_INT);
     }
 
@@ -418,9 +419,9 @@ class EacParser extends BaseParser
 
             /* Dirty hack for inconsistent spacing */
             if ($trackNumber < 10) {
-                $pos = strpos($this->log, 'Track  '.$trackNumber);
+                $pos = strpos($this->log, 'Track  ' . $trackNumber);
             } else {
-                $pos = strpos($this->log, 'Track '.$trackNumber);
+                $pos = strpos($this->log, 'Track ' . $trackNumber);
             }
 
             /* If we didn't find a track, break the loop */
@@ -434,15 +435,15 @@ class EacParser extends BaseParser
                 'filename' => $this->getTrackFileName($pos),
                 /* Does not work correctly, yet */
                 //'pregap_length' => $this->getTrackPregapLength($pos),
-                'peak_level'       => $this->getTrackPeakLevel($pos),
+                'peak_level' => $this->getTrackPeakLevel($pos),
                 'extraction_speed' => $this->getTrackExtractionSpeed($pos),
-                'track_quality'    => $this->getTrackQuality($pos),
-                'checksums'        => [
+                'track_quality' => $this->getTrackQuality($pos),
+                'checksums' => [
                     'test_crc' => $this->getTrackTestCrc($pos),
                     'copy_crc' => $this->getTrackCopyCrc($pos),
                 ],
                 'accurate_rip_confidence' => $this->getTrackAccurateRipConfidence($pos),
-                'copy'                    => $this->getTrackCopyResult($pos),
+                'copy' => $this->getTrackCopyResult($pos),
             ];
 
             $trackNumber++;
@@ -501,14 +502,18 @@ class EacParser extends BaseParser
      *
      * @param int $pos
      *
-     * @return float
+     * @return float|string
      */
-    protected function getTrackExtractionSpeed(int $pos): float
+    protected function getTrackExtractionSpeed(int $pos)
     {
         $option = 'Extraction speed ';
         $text = $this->getTrackOption($pos, $option);
 
-        return filter_var($text, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        if (!$text) {
+            return $option . 'not detected.';
+        } else {
+            return filter_var($text, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        }
     }
 
     /**
@@ -563,6 +568,11 @@ class EacParser extends BaseParser
      */
     protected function getTrackAccurateRipConfidence(int $pos): int
     {
+        $needle = "Track not present in AccurateRip database";
+        if (strpos($this->log, $needle, $pos) !== false) {
+            return 0;
+        }
+
         $option = 'confidence ';
         $pos = strpos($this->log, $option, $pos) + strlen($option);
         $text = substr($this->log, $pos, 1);
@@ -627,13 +637,13 @@ class EacParser extends BaseParser
     protected function getOptionString($option): string
     {
         /* Find the position at which we should start reading for the result */
-        $pos = strpos($this->log, $option) + strlen($option);
+        $pos = strpos($this->log, $option);
 
         if ($pos === false) {
-            return $option.' not found';
+            return $option . ' not found';
         } /* Return the text after the colon on the line given */
         else {
-            $text = $this->readFromPosToEOL($pos);
+            $text = $this->readFromPosToEOL($pos + strlen($option));
 
             return $this->getTextAfterColon($text);
         }
@@ -659,12 +669,18 @@ class EacParser extends BaseParser
      * @param int $pos
      * @param $option
      *
-     * @return string
+     * @return string|null
      */
-    protected function getTrackOption(int $pos, $option): string
+    protected function getTrackOption(int $pos, $option)
     {
-        $pos = strpos($this->log, $option, $pos) + strlen($option);
+        $pos = strpos($this->log, $option, $pos);
 
-        return $this->readFromPosToEOL($pos);
+        if ($pos === false) {
+            return null;
+        } /* Return the text after the colon on the line given */
+        else {
+            return $this->readFromPosToEOL($pos + strlen($option));
+        }
+
     }
 }

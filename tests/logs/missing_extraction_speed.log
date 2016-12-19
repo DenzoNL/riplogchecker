@@ -1,0 +1,243 @@
+Exact Audio Copy V0.99 prebeta 4 from 23. January 2008
+
+EAC extraction logfile from 12. October 2008, 7:30
+
+Blackmore's Night / Shadow Of The Moon
+
+Used Drive  : MATSHITABD-CMB UJ-120   Adapter: 1  ID: 0 (not found in database)
+
+Read mode               : Secure
+Utilize accurate stream : Yes
+Defeat audio cache      : Yes
+Make use of C2 pointers : No
+
+Read offset correction                      : 102
+Overread into Lead-In and Lead-Out          : No
+Fill up missing offset samples with silence : Yes
+Delete leading and trailing silent blocks : No
+Null samples used in CRC calculations       : Yes
+Used interface                              : Native Win32 interface for Win NT & 2000
+Gap handling                                : Appended to previous track
+
+Used output format              : User Defined Encoder
+Selected bitrate                : 1024 kBit/s
+Quality                         : High
+Add ID3 tag                     : No
+Command line compressor         : C:\Program Files\Exact Audio Copy\FLAC\FLAC.EXE
+Additional command line options : -8 -V -T "ARTIST=%a" -T "TITLE=%t" -T "ALBUM=%g" -T "DATE=%y" -T
+"TRACKNUMBER=%n" -T "GENRE=%m" -T "COMMENT=EAC FLAC -8" %s
+
+
+TOC of the extracted CD
+
+     Track |   Start  |  Length  | Start sector | End sector
+    ---------------------------------------------------------
+        1  |  0:00.00 |  5:07.00 |         0    |    23024
+        2  |  5:07.00 |  5:14.72 |     23025    |    46646
+        3  | 10:21.72 |  2:51.00 |     46647    |    59471
+        4  | 13:12.72 |  3:59.03 |     59472    |    77399
+        5  | 17:12.00 |  6:05.72 |     77400    |   104846
+        6  | 23:17.72 |  2:35.70 |    104847    |   116541
+        7  | 25:53.67 |  4:01.43 |    116542    |   134659
+        8  | 29:55.35 |  4:35.05 |    134660    |   155289
+        9  | 34:30.40 |  4:16.10 |    155290    |   174499
+       10  | 38:46.50 |  1:05.32 |    174500    |   179406
+       11  | 39:52.07 |  5:38.45 |    179407    |   204801
+       12  | 45:30.52 |  3:33.15 |    204802    |   220791
+       13  | 49:03.67 |  4:50.03 |    220792    |   242544
+       14  | 53:53.70 |  3:46.60 |    242545    |   259554
+       15  | 57:40.55 |  5:01.40 |    259555    |   282169
+       16  | 62:42.20 |  2:33.55 |    282170    |   293699
+
+
+Track  1
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\01 - Shadow Of The Moon.wav
+
+     Pre-gap length  0:00:02.00
+
+     Peak level 95.5 %
+     Track quality 100.0 %
+     Test CRC DAD6F35F
+     Copy CRC DAD6F35F
+     Accurately ripped (confidence 4)  [B3AF651D]
+     Copy OK
+
+Track  2
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\02 - The Clock Ticks On.wav
+
+     Peak level 99.6 %
+     Track quality 100.0 %
+     Test CRC 07571EFF
+     Copy CRC 07571EFF
+     Accurately ripped (confidence 3)  [65B69C27]
+     Copy OK
+
+Track  3
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\03 - Be Mine Tonight.wav
+
+     Peak level 99.9 %
+     Track quality 99.9 %
+     Test CRC 4C756918
+     Copy CRC 4C756918
+     Accurately ripped (confidence 3)  [B251E990]
+     Copy OK
+
+Track  4
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\04 - Play Minstrel Play.wav
+
+     Peak level 100.0 %
+     Track quality 99.9 %
+     Test CRC 8228EE9D
+     Copy CRC 8228EE9D
+     Accurately ripped (confidence 3)  [987DEDA3]
+     Copy OK
+
+Track  5
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\05 - Ocean Gypsy.wav
+
+     Pre-gap length  0:00:01.13
+
+     Peak level 98.9 %
+     Track quality 100.0 %
+     Test CRC 92FF92EE
+     Copy CRC 92FF92EE
+     Accurately ripped (confidence 3)  [A18C53A2]
+     Copy OK
+
+Track  6
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\06 - Minstrel Hall.wav
+
+     Peak level 93.3 %
+     Track quality 100.0 %
+     Test CRC C33021FA
+     Copy CRC C33021FA
+     Accurately ripped (confidence 3)  [95FB0AF6]
+     Copy OK
+
+Track  7
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\07 - Magical World.wav
+
+     Peak level 94.1 %
+     Track quality 100.0 %
+     Test CRC 2FD19EB8
+     Copy CRC 2FD19EB8
+     Accurately ripped (confidence 3)  [3BA7DAD4]
+     Copy OK
+
+Track  8
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\08 - Writing On The Wall.wav
+
+     Pre-gap length  0:00:01.23
+
+     Peak level 97.7 %
+     Track quality 100.0 %
+     Test CRC 68E1C80E
+     Copy CRC 68E1C80E
+     Accurately ripped (confidence 3)  [058194FD]
+     Copy OK
+
+Track  9
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\09 - Renaissance Faire.wav
+
+     Peak level 93.1 %
+     Track quality 100.0 %
+     Test CRC B738050E
+     Copy CRC B738050E
+     Cannot be verified as accurate (confidence 2)  [100BD56B], AccurateRip returned [95477BC8]
+     Copy OK
+
+Track 10
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\10 - Memmingen.wav
+
+     Peak level 82.0 %
+     Track quality 99.8 %
+     Test CRC CAC0BEC8
+     Copy CRC CAC0BEC8
+     Accurately ripped (confidence 3)  [1A23F48B]
+     Copy OK
+
+Track 11
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\11 - No Second Chance.wav
+
+     Peak level 92.2 %
+     Track quality 100.0 %
+     Test CRC 4158E8A3
+     Copy CRC 4158E8A3
+     Accurately ripped (confidence 3)  [60FBFB01]
+     Copy OK
+
+Track 12
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\12 - Mond Tanz.wav
+
+     Peak level 97.7 %
+     Track quality 99.9 %
+     Test CRC 7BC84CFB
+     Copy CRC 7BC84CFB
+     Accurately ripped (confidence 3)  [5A803B99]
+     Copy OK
+
+Track 13
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\13 - Spirit Of The Sea.wav
+
+     Peak level 98.8 %
+     Track quality 100.0 %
+     Test CRC 22945C5B
+     Copy CRC 22945C5B
+     Accurately ripped (confidence 3)  [CF9F3CE4]
+     Copy OK
+
+Track 14
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\14 - Greensleeves.wav
+
+     Peak level 98.8 %
+     Track quality 99.9 %
+     Test CRC EC0524FE
+     Copy CRC EC0524FE
+     Accurately ripped (confidence 3)  [E21EB4F7]
+     Copy OK
+
+Track 15
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\15 - Wish You Were Here.wav
+
+     Peak level 100.0 %
+     Track quality 100.0 %
+     Test CRC 18E98B00
+     Copy CRC 18E98B00
+     Accurately ripped (confidence 3)  [681E72C7]
+     Copy OK
+
+Track 16
+
+     Filename C:\aData\Music\temp\Blackmore's Night - Shadow Of The Moon (1997) [FLAC]\16 - Minstrel Hall (Bonus Track Version).wav
+
+     Peak level 90.5 %
+     Track quality 100.0 %
+     Test CRC 7FFD5522
+     Copy CRC 7FFD5522
+     Accurately ripped (confidence 3)  [D629DF22]
+     Copy OK
+
+
+15 track(s) accurately ripped
+ 1 track(s) could not be verified as accurate
+
+Some tracks could not be verified as accurate
+
+No errors occurred
+
+End of status report
