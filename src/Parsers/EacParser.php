@@ -18,7 +18,7 @@ class EacParser extends BaseParser
     {
         $this->data = [
             'riplogchecker_version' => RipLogChecker::getVersion(),
-            'metadata' => [
+            'metadata'              => [
                 'software_version' => $this->getSoftwareVersion(),
                 'log_date'         => $this->getLogDate(),
                 /* TODO: Implement these functions */
